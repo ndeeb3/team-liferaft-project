@@ -26,6 +26,7 @@ public class Logout extends AppCompatActivity {
                 Context context = (view.getContext());
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
                 context.startActivity(intent);
+                finish();
                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                  //       .setAction("Action", null).show();
             }

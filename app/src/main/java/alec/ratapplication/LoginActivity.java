@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
+     * DUMMY CREDENTIALS
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
@@ -95,7 +97,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         cancelLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(LoginActivity.this, Logout.class);
+                Intent intent = new Intent(LoginActivity.this, Welcome.class);
+                startActivity(intent);
             }
         });
 
@@ -196,6 +199,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
         }
     }
 
@@ -331,7 +335,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     return pieces[1].equals(mPassword);
                 }
             }
-
             // TODO: register the new account here.
             return true;
         }
@@ -342,6 +345,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                Intent intent = new Intent(LoginActivity.this, Logout.class);
+                startActivity(intent);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

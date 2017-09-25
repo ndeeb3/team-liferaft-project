@@ -28,22 +28,14 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp">
 
-        <EditText
+        <TextView
             android:id="@+id/welcomeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
-            android:editable="false"
-            android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
-            android:singleLine="false"
             android:text="Welcome!"
-            android:textSize="30sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="65dp" />
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/loginButton"
