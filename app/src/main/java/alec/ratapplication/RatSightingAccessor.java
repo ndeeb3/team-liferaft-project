@@ -1,4 +1,6 @@
 package alec.ratapplication;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  * Created by micha on 10/2/2017.
@@ -17,30 +19,41 @@ public class RatSightingAccessor {
                                                Date startDate,
                                                Date endDate,
                                                Borough borough){
-        //// TODO: 10/2/2017
+        //// TODO
         return new RatSightingReport[0];
     }
 
-    /**
-     * Dont know the purpose of this one
-     */
-    public void updateMap(){
 
+    /**
+     *
+     * @param reports the reports will get get added to the map
+     */
+    public void updateMap(RatSightingReport[] reports){
+        // Todo
     }
 
     /**
      *
-     * @param sighting the RatSighting we are goign to put into the database
+     * @param sighting rat sighting to be put into the database
      */
     public void inputSighting(RatSightingReport sighting) {
-
+        // Todo
     }
 
     /**
      *
-     * @return a list of the Users
+     * @param user user to be added to the database
      */
-    public User[] getUsers(){
-        return new User[0];
+    public void CreateAccount(User user) {
+        // Todo this code is temporary
+        FakeDatabase.getInstance().userList.add(user);
+    }
+    /**
+     *
+     * @return an array of the Users
+     */
+    public ArrayList getUsers(){
+        // Todo this code is temporary
+        return FakeDatabase.getInstance().userList;
     }
 }
