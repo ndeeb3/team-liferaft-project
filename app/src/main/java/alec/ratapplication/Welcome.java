@@ -11,8 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 public class Welcome extends AppCompatActivity {
 
+
+    private List<User> temperaryUsersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +32,16 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("DEBUG", "Launching Login Activity");
                 Intent intent = new Intent(Welcome.this, LoginActivity.class);
+                Bundle bundle = new Bundle();
                 startActivity(intent);
             }
         });
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*Intent intent = new Intent(Welcome.this, LoginActivity.class);
-                startActivity(intent);*/
-                //register code here
+                Log.d("DEBUG", "Launching Registration Activity");
+                Intent intent = new Intent(Welcome.this, RegistrationActivity.class);
+                startActivity(intent);
             }
         });
 

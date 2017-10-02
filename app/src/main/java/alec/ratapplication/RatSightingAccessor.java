@@ -1,4 +1,6 @@
 package alec.ratapplication;
+import android.util.Log;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,15 +46,16 @@ public class RatSightingAccessor {
      *
      * @param user user to be added to the database
      */
-    public void CreateAccount(User user) {
+    public void createAccount(User user) {
         // Todo this code is temporary
+        Log.d("DEBUG", "Inside accessor" + user.getContactInfo());
         FakeDatabase.getInstance().userList.add(user);
     }
     /**
      *
      * @return an array of the Users
      */
-    public ArrayList getUsers(){
+    public ArrayList<User> getUsers(){
         // Todo this code is temporary
         return FakeDatabase.getInstance().userList;
     }
