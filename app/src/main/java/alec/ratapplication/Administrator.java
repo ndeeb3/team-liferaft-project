@@ -1,15 +1,15 @@
 /**
  * Created by micha on 10/2/2017.
  */
+package alec.ratapplication;
 
 public class Administrator extends User {
     private String loginName;
 
     public Administrator(String loginName,
                           String password,
-                          boolean accountState,
-                          String emailAddress)
-        super(loginName, password, accountState, emailAddress);
+                          String emailAddress){
+        super(loginName, password, emailAddress);
     }
 
     /**
