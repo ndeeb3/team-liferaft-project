@@ -46,6 +46,6 @@ public class User {
     }
 
     /*public reportSighting(RatSightingReport report) {
-
+        return new RatSightingReport();
     }*/
 }
