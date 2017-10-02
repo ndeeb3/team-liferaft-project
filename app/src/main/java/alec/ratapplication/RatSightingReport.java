@@ -15,9 +15,6 @@ public class RatSightingReport {
     private int zipcode;
     private String address;
     private String city;
-    public enum Borough {
-        MANHATTAN, STATENISLAND, QUEENS, BROOKLYN, BRONX
-    }
     private  Borough borough;
 
     public RatSightingReport(String key, int latitude, int longitude, Date dateTime,
