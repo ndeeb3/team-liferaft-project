@@ -7,10 +7,6 @@ import java.io.Serializable;
  */
 
 public class User implements Serializable {
-    /*login name (in recognition of current popular trends, this can be the email address)
-    password
-    account state (locked or unlocked)
-    contact info (email address)*/
 
     private String loginName;
     private String password;
