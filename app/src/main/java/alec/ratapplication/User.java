@@ -13,6 +13,12 @@ public class User implements Serializable {
     private boolean locked = false;
     private String contactInfo;
 
+    /**
+     *
+     * @param loginName the user's login name
+     * @param password the user's password
+     * @param contactInfo the user's email address
+     */
     public User(String loginName, String password, String contactInfo) {
         this.loginName = loginName;
         this.password = password;

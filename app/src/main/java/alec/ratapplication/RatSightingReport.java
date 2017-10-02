@@ -17,6 +17,18 @@ public class RatSightingReport {
     private String city;
     private  Borough borough;
 
+    /**
+     *
+     * @param key the unique key auto-assigned by the system
+     * @param latitude the latitude of the rat sighting
+     * @param longitude the longitude of the rat sighting
+     * @param dateTime the date and time of the rat sighting
+     * @param locationType the location from the LocationType enum
+     * @param zipcode the zipcode of the rat sighting
+     * @param address the address of the rat sighting
+     * @param city the city of the rat sighting
+     * @param borough the borough from the Borough enum
+     */
     public RatSightingReport(String key, int latitude, int longitude, Date dateTime,
                              LocationType locationType, int zipcode, String address,
                              String city, Borough borough) {
