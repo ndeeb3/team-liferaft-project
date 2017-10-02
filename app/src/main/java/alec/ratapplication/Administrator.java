@@ -7,6 +7,12 @@ public class Administrator extends User {
     private String loginName;
     private String fdsgsdf;
 
+    /**
+     *
+     * @param loginName the users login name
+     * @param password the users password
+     * @param emailAddress the users emailAddress
+     */
     public Administrator(String loginName,
                           String password,
                           String emailAddress){
@@ -15,16 +21,26 @@ public class Administrator extends User {
 
     /**
      *
-     * @param user
+     * @param user a user to be registerd
      */
     public void registerAccount(User user){
-
+        // Todo
     }
+
+    /**
+     *
+     * @param user a user to be blocked
+     */
     public void blockUser(User user) {
-
+        // Todo
     }
-    public void unblockUser(User user) {
 
+    /**
+     *
+     * @param user a user t be unblocked
+     */
+    public void unblockUser(User user) {
+        // Todo
     }
 
 }
