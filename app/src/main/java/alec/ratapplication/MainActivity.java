@@ -33,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button2 = (Button) findViewById(R.id.SightingsView);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = (view.getContext());
+                Intent intent = new Intent(view.getContext(), ListSightingsActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         users = new ArrayList<>();
 
 
