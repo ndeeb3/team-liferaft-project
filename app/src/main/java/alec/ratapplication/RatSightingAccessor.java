@@ -25,6 +25,14 @@ public class RatSightingAccessor {
         return new RatSightingReport[0];
     }
 
+    /**
+     *
+     * @return a list of rat report sightings. Alec will replace the code we put here
+     */
+    public RatSightingReport[] getAllSightings() {
+        //TODO
+        return new RatSightingReport[0];
+    }
 
     /**
      *
