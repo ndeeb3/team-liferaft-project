@@ -6,10 +6,19 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="alec.ratapplication.ListSightingsActivity"
-    tools:showIn="@layout/activity_list_sightings">
+    >
 
-    <ListView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/RatSightingsRecycler"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+         />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

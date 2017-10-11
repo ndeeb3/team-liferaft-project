@@ -1,9 +1,13 @@
 package alec.ratapplication;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
+
 /**
  * Created by micha on 10/2/2017.
  */
@@ -17,6 +21,7 @@ public class RatSightingAccessor {
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
+
     public RatSightingReport[] filterSightings(LocationType locationType,
                                                Date startDate,
                                                Date endDate,
@@ -29,8 +34,9 @@ public class RatSightingAccessor {
      *
      * @return a list of rat report sightings. Alec will replace the code we put here
      */
-    public RatSightingReport[] getAllSightings() {
+    public RatSightingReport[] getAllSightings() throws java.io.IOException {
         //TODO
+        Log.d("DEBUG",  System.getProperty("user.dir"));
         return new RatSightingReport[0];
     }
 

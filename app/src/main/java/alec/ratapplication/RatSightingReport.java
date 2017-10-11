@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class RatSightingReport {
     private String key;
-    private int latitude;
-    private int longitude;
+    private float latitude;
+    private float longitude;
     private Date dateTime;
     private LocationType locationType;
     private int zipcode;
@@ -29,7 +29,7 @@ public class RatSightingReport {
      * @param city the city of the rat sighting
      * @param borough the borough from the Borough enum
      */
-    public RatSightingReport(String key, int latitude, int longitude, Date dateTime,
+    public RatSightingReport(String key, float latitude, float longitude, Date dateTime,
                              LocationType locationType, int zipcode, String address,
                              String city, Borough borough) {
         this.key = key;
@@ -42,6 +42,8 @@ public class RatSightingReport {
         this.city = city;
         this.borough = borough;
     }
-
+    public String getKey() {
+        return key;
+    }
     
 }
