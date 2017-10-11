@@ -39,17 +39,17 @@ public class ListSightingsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Sets up the recycler view, adding the adapter and layout manager
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sightings_View);
-        //setupRecyclerView((RecyclerView) recyclerView);
         Log.d("DEBUG", "setting up recycler view");
         recyclerView.setAdapter(new RatRecyclerViewAdapter(RatSightingAccessor.reports));
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new RatRecyclerViewAdapter(RatSightingAccessor.reports));
-    }
-
+    /**
+     * Inner adapter class for the recycler view
+     * sets up the formatting of the list and what to do when an item is clicked on
+     */
     public class RatRecyclerViewAdapter
             extends RecyclerView.Adapter<RatRecyclerViewAdapter.RatViewHolder> {
 
@@ -69,18 +69,20 @@ public class ListSightingsActivity extends AppCompatActivity {
 
         @Override
         public RatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            Log.d("Debug", "Generating new ViewHolder");
+            //Log.d("Debug", "Generating new ViewHolder");
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rat_sighting_list_content, parent, false);
             return new RatViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final RatViewHolder holder, final int position) {
-
+        public void onBindViewHolder(final RatViewHolder holder, int position) {
+            //Sets up the views in the list using the holder
             holder.sighting = sightings.get(position);
             holder.addressView.setText(sightings.get(position).getAddress());
             holder.timeView.setText(sightings.get(position).getDateTime());
 
+            //Opens a new detailed sighting view
+            //also passes in the display fragment and posistion of the clicked item
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,13 +90,17 @@ public class ListSightingsActivity extends AppCompatActivity {
                         Intent intent = new Intent(context, RatSightingDetail.class);
                         Log.d("DEBUG", "Switch to detailed view for rat sighting key: " + holder.sighting.getKey());
                         intent.putExtra(RatSightingFragment.ITEM_ID, holder.sighting.getKey());
-                        intent.putExtra("loc", position);
+                        intent.putExtra("loc", holder.getAdapterPosition());
                         context.startActivity(intent);
                     }
                 }
             );
         }
 
+        /**
+         * inner class for the RatRecyclerViewAdapter
+         * actually sets up the textviews for the list
+         */
         public class RatViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final TextView addressView;

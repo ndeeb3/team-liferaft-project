@@ -17,7 +17,6 @@ public class RatSightingReport {
     private String city;
     private  String borough;
 
-
     /**
      *
      * @param key the unique key auto-assigned by the system

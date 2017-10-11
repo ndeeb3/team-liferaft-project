@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         Log.d("DEBUG", "Reading from Firebase");
+
+        //begin loading the rat sightings from firebase
         RatSightingAccessor.loadSightings();
         Button button =  (Button) findViewById(R.id.LogoutButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -35,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Launches the sightings view
         Button button2 = (Button) findViewById(R.id.SightingsView);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.d("DEBUG", "HELLO " + RatSightingAccessor.snapshots.size() + " : " + RatSightingAccessor.snapshots.toString());
                 Context context = (view.getContext());
                 Intent intent = new Intent(view.getContext(), ListSightingsActivity.class);
                 context.startActivity(intent);

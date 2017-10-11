@@ -29,8 +29,7 @@ public class RatSightingFragment extends Fragment {
     private RatSightingReport report;
 
     /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
+     * Mandatory empty constructor for the fragment manager
      */
     public RatSightingFragment() {
     }
@@ -39,18 +38,13 @@ public class RatSightingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Gets the unique ID and location in data list
         if (getArguments().containsKey(ITEM_ID)) {
             String item_id = getArguments().getString(ITEM_ID);
             Log.d("DEBUG", "Starting Fragment for sighting key: " + item_id);
             int item_loc = getArguments().getInt("loc");
             report = RatSightingAccessor.reports.get(item_loc);
             Log.d("DEBUG", "Report Fragment: " + report.getKey());
-            //mItem = SimpleModel.INSTANCE.findItemById(item_id);
-            //Activity activity = this.getActivity();
-            //CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            /*if (appBarLayout != null) {
-                appBarLayout.setTitle("Temp");
-            }*/
         }
     }
 
@@ -59,7 +53,7 @@ public class RatSightingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_rat_sighting, container, false);
         Log.d("DEBUG", "Getting ready to set data");
-        //Shows the specific data in text views
+        //Shows the specific data of the report in assorted text views
         if (report != null) {
             Log.d("DEBUG", "Getting ready to set Things");
             ((TextView) rootView.findViewById(R.id.address_fragment)).setText("Address: " + report.getAddress());

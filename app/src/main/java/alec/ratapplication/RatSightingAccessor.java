@@ -26,43 +26,13 @@ public class RatSightingAccessor {
     public static List<String> snapshots = new LinkedList<>();
     public static List<RatSightingReport> reports = new LinkedList<>();
     public RatSightingAccessor() {
-
-
-        //List<DataSnapshot> snapshots = new LinkedList<>();
         Query recentPostsQuery = mDatabase;
-        /*recentPostsQuery.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "Child Num:" + dataSnapshot.getKey());
-                snapshots.add(dataSnapshot.toString());
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Log.d(TAG, child.toString());
-                }
-                //Comment comment = dataSnapshot.getValue(Comment.class);
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });*/
     }
 
-
+    /**
+     * Method that loads the sightings into the list
+     * as firebase does this asyncronusly, will not stop the progress of the program
+     */
     public static void loadSightings() {
         Query tempquery = mDatabase.limitToFirst(100);
         tempquery.addChildEventListener(new ChildEventListener() {
