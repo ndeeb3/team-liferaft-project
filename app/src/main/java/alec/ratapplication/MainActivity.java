@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
+        Log.d("DEBUG", "Reading from Firebase");
+        RatSightingAccessor.loadSightings();
         Button button =  (Button) findViewById(R.id.LogoutButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Log.d("DEBUG", "HELLO " + RatSightingAccessor.snapshots.size() + " : " + RatSightingAccessor.snapshots.toString());
                 Context context = (view.getContext());
                 Intent intent = new Intent(view.getContext(), ListSightingsActivity.class);
                 context.startActivity(intent);

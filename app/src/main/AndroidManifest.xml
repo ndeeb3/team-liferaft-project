@@ -39,6 +39,10 @@
         <activity
             android:name=".ListSightingsActivity"
             android:label="@string/title_activity_list_sightings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RatSightingDetail"
+            android:label="@string/title_activity_rat_sighting_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -8,14 +8,18 @@ import java.util.Date;
 
 public class RatSightingReport {
     private String key;
-    private int latitude;
-    private int longitude;
-    private Date dateTime;
-    private LocationType locationType;
+
+
+
+    private double latitude;
+    private double longitude;
+    private String dateTime;
+    private String locationType;
     private int zipcode;
     private String address;
     private String city;
-    private  Borough borough;
+    private  String borough;
+
 
     /**
      *
@@ -29,9 +33,9 @@ public class RatSightingReport {
      * @param city the city of the rat sighting
      * @param borough the borough from the Borough enum
      */
-    public RatSightingReport(String key, int latitude, int longitude, Date dateTime,
-                             LocationType locationType, int zipcode, String address,
-                             String city, Borough borough) {
+    public RatSightingReport(String key, double latitude, double longitude, String dateTime,
+                             String locationType, int zipcode, String address,
+                             String city, String borough) {
         this.key = key;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -43,5 +47,40 @@ public class RatSightingReport {
         this.borough = borough;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public String getLocationType() {
+        return locationType;
+    }
+
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getBorough() {
+        return borough;
+    }
     
 }

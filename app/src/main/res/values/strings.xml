@@ -19,6 +19,10 @@
     <string name="register">Registration</string>
     <string name="prompt_username">Username</string>
     <string name="title_activity_list_sightings">ListSightingsActivity</string>
+    <string name="title_activity_rat_sighting_detail">RatSightingDetail</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -5,14 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="alec.ratapplication.ListSightingsActivity"
-    tools:showIn="@layout/activity_list_sightings">
+    tools:context="alec.ratapplication.RatSightingDetail"
+    tools:showIn="@layout/activity_rat_sighting_detail">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/sightings_View"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:listitem="@layout/rat_sighting_list_content" />
 </android.support.constraint.ConstraintLayout>
