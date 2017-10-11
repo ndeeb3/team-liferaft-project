@@ -27,6 +27,7 @@ public class RatSightingAccessor {
     public static List<RatSightingReport> reports = new LinkedList<>();
     public RatSightingAccessor() {
 
+
         //List<DataSnapshot> snapshots = new LinkedList<>();
         Query recentPostsQuery = mDatabase;
         /*recentPostsQuery.addChildEventListener(new ChildEventListener() {
@@ -63,7 +64,7 @@ public class RatSightingAccessor {
 
 
     public static void loadSightings() {
-        Query tempquery = mDatabase;//.limitToFirst(100);
+        Query tempquery = mDatabase.limitToFirst(100);
         tempquery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

@@ -62,10 +62,15 @@ public class RatSightingFragment extends Fragment {
         //Shows the specific data in text views
         if (report != null) {
             Log.d("DEBUG", "Getting ready to set Things");
-            ((TextView) rootView.findViewById(R.id.address_fragment)).setText(report.getAddress());
-            ((TextView) rootView.findViewById(R.id.Time)).setText(report.getDateTime());
-            ((TextView) rootView.findViewById(R.id.key)).setText(report.getKey());
-            ((TextView) rootView.findViewById(R.id.location)).setText(report.getLocationType());
+            ((TextView) rootView.findViewById(R.id.address_fragment)).setText("Address: " + report.getAddress());
+            ((TextView) rootView.findViewById(R.id.borough)).setText("Borough: " + report.getBorough());
+            ((TextView) rootView.findViewById(R.id.latitude)).setText("Latitude: " + Double.toString(report.getLatitude()));
+            ((TextView) rootView.findViewById(R.id.longitude)).setText("Longitude: " + Double.toString(report.getLongitude()));
+            ((TextView) rootView.findViewById(R.id.city)).setText("City: " + report.getCity());
+            ((TextView) rootView.findViewById(R.id.zipcode)).setText("Zip: " + Integer.toString(report.getZipcode()));
+            ((TextView) rootView.findViewById(R.id.time_fragment)).setText("Date: " + report.getDateTime());
+            ((TextView) rootView.findViewById(R.id.unique_key)).setText("Unique Report Key: " + report.getKey());
+            ((TextView) rootView.findViewById(R.id.location)).setText("Location: " + report.getLocationType());
         }
         return rootView;
     }
