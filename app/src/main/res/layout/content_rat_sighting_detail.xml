@@ -8,4 +8,12 @@
     tools:context="alec.ratapplication.RatSightingDetail"
     tools:showIn="@layout/activity_rat_sighting_detail">
 
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/rat_sighting_container"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

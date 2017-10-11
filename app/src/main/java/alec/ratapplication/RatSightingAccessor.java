@@ -1,4 +1,5 @@
 package alec.ratapplication;
+import android.nfc.Tag;
 import android.os.Debug;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -62,31 +63,57 @@ public class RatSightingAccessor {
 
 
     public static void loadSightings() {
-        Query tempquery = mDatabase.limitToFirst(100);
+        Query tempquery = mDatabase;//.limitToFirst(100);
         tempquery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 String key = (String) dataSnapshot.child("Unique Key").getValue();
                 Log.d("DEBUG", dataSnapshot.toString());
                 double lat = 0;
-                if(((String)dataSnapshot.child("Latitude").getValue()) == null) {
+                if(!((String)dataSnapshot.child("Latitude").getValue()).equals("")) {
                     lat = Double.valueOf((String)dataSnapshot.child("Latitude").getValue());
                 }
+
                 double lon = 0;
-                if(((String)dataSnapshot.child("Longitude").getValue()) == null) {
+                if(!((String)dataSnapshot.child("Longitude").getValue()).equals("")) {
                     lon = Double.valueOf((String)dataSnapshot.child("Longitude").getValue());
                 }
-                String dateTime = (String)dataSnapshot.child("Created Date").getValue();
-                String loc = (String)dataSnapshot.child("Location Type").getValue();
+                String dateTime = "NO TIME GIVEN";
+                if(!((String)dataSnapshot.child("Created Date").getValue()).equals("")) {
+                    dateTime = (String)dataSnapshot.child("Created Date").getValue();
+                }
+
+                String loc = "NO LOCATION GIVEN";
+                if(!((String)dataSnapshot.child("Location Type").getValue()).equals("")) {
+                    loc = (String)dataSnapshot.child("Location Type").getValue();
+                }
+
                 int zip = 0;
-                if(((String)dataSnapshot.child("Incident Zip").getValue()) == null) {
+                if(!((String)dataSnapshot.child("Incident Zip").getValue()).equals("")
+                        && !((String)dataSnapshot.child("Incident Zip").getValue()).equals("N/A")) {
                     zip = Integer.valueOf((String)dataSnapshot.child("Incident Zip").getValue());
                 }
-                String address = (String) dataSnapshot.child("Address").getValue();
-                String city = (String) dataSnapshot.child("City").getValue();
-                String borough = (String) dataSnapshot.child("Borough").getValue();
+
+                String address = "NO ADDRESS GIVEN";
+                if(!((String)dataSnapshot.child("Incident Address").getValue()).equals("")) {
+                    address = (String)dataSnapshot.child("Incident Address").getValue();
+                }
+                Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
+
+                String city = "NO CITY GIVEN";
+                if(!((String)dataSnapshot.child("City").getValue()).equals("")) {
+                    city = (String)dataSnapshot.child("City").getValue();
+                }
+
+                String borough = "NO BOROUGH GIVEN";
+                if(!((String)dataSnapshot.child("Borough").getValue()).equals("")) {
+                    borough = (String)dataSnapshot.child("Borough").getValue();
+                }
+
                 RatSightingReport newSighting = new RatSightingReport(key,lat,lon,dateTime,loc,zip,address,city,borough);
                 reports.add(newSighting);
+
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -120,8 +147,7 @@ public class RatSightingAccessor {
                                                Date startDate,
                                                Date endDate,
                                                Borough borough){
-        Log.d(TAG, "SNAP1234" + snapshots.toString());
-        Query tempQuery = mDatabase.limitToFirst(100);
+        Query tempQuery = mDatabase;//.limitToFirst(100);
         //tempQuery.addChildEventListener(dataListener);
         return new RatSightingReport[0];
     }

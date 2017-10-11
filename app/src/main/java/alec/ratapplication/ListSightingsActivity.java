@@ -75,20 +75,20 @@ public class ListSightingsActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final RatViewHolder holder, int position) {
+        public void onBindViewHolder(final RatViewHolder holder, final int position) {
 
             holder.sighting = sightings.get(position);
-            holder.addressView.setText("" + sightings.get(position).getAddress());
-            holder.timeView.setText(sightings.get(position).getKey());
+            holder.addressView.setText(sightings.get(position).getAddress());
+            holder.timeView.setText(sightings.get(position).getDateTime());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, RatSightingDetail.class);
-                        Log.d("DEBUG", "Switch to detailed view for rat sighting: " + holder.sighting.getKey());
+                        Log.d("DEBUG", "Switch to detailed view for rat sighting key: " + holder.sighting.getKey());
                         intent.putExtra(RatSightingFragment.ITEM_ID, holder.sighting.getKey());
-                        //intent.putExtra("sighting", holder.sighting);
+                        intent.putExtra("loc", position);
                         context.startActivity(intent);
                     }
                 }

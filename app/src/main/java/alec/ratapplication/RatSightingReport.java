@@ -8,9 +8,6 @@ import java.util.Date;
 
 public class RatSightingReport {
     private String key;
-
-
-
     private double latitude;
     private double longitude;
     private String dateTime;

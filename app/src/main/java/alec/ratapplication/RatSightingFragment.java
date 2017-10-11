@@ -26,7 +26,7 @@ public class RatSightingFragment extends Fragment {
     /**
      * The sighting this fragment is presenting.
      */
-    private RatSightingReport mItem;
+    private RatSightingReport report;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -40,11 +40,11 @@ public class RatSightingFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            int item_id = getArguments().getInt(ITEM_ID);
-            Log.d("RAT SIGHTING FRAGMENT", "Start details for: " + item_id);
+            String item_id = getArguments().getString(ITEM_ID);
+            Log.d("DEBUG", "Starting Fragment for sighting key: " + item_id);
+            int item_loc = getArguments().getInt("loc");
+            report = RatSightingAccessor.reports.get(item_loc);
+            Log.d("DEBUG", "Report Fragment: " + report.getKey());
             //mItem = SimpleModel.INSTANCE.findItemById(item_id);
             //Activity activity = this.getActivity();
             //CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -57,15 +57,15 @@ public class RatSightingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.content_rat_sighting_detail, container, false);
-        Log.d("MYAPP", "Getting ready to set data");
+        View rootView = inflater.inflate(R.layout.fragment_rat_sighting, container, false);
+        Log.d("DEBUG", "Getting ready to set data");
         //Shows the specific data in text views
-        if (mItem != null) {
-            Log.d("MYAPP", "Getting ready to set Things");
-            ((TextView) rootView.findViewById(R.id.address_fragment)).setText(R.string.prompt_username);
-            ((TextView) rootView.findViewById(R.id.Time)).setText(R.string.prompt_username);
-            ((TextView) rootView.findViewById(R.id.key)).setText(R.string.prompt_username);
-            ((TextView) rootView.findViewById(R.id.location)).setText(R.string.prompt_username);
+        if (report != null) {
+            Log.d("DEBUG", "Getting ready to set Things");
+            ((TextView) rootView.findViewById(R.id.address_fragment)).setText(report.getAddress());
+            ((TextView) rootView.findViewById(R.id.Time)).setText(report.getDateTime());
+            ((TextView) rootView.findViewById(R.id.key)).setText(report.getKey());
+            ((TextView) rootView.findViewById(R.id.location)).setText(report.getLocationType());
         }
         return rootView;
     }
