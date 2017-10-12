@@ -24,7 +24,6 @@ public class RatSightingAccessor {
     private ChildEventListener dataListener;
     private String TAG = "DEBUG";
     public static List<String> snapshots = new LinkedList<>();
-    public static List<RatSightingReport> reports = new LinkedList<>();
     public RatSightingAccessor() {
         Query recentPostsQuery = mDatabase;
     }
@@ -34,7 +33,8 @@ public class RatSightingAccessor {
      * as firebase does this asyncronusly, will not stop the progress of the program
      */
     public static void loadSightings() {
-        Query tempquery = mDatabase.limitToFirst(100);
+        //limit to first limits the number of entries the query will access
+        Query tempquery = mDatabase;//.limitToFirst(100);
         tempquery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -83,7 +83,7 @@ public class RatSightingAccessor {
                 }
 
                 RatSightingReport newSighting = new RatSightingReport(key,lat,lon,dateTime,loc,zip,address,city,borough);
-                reports.add(newSighting);
+                FakeDatabase.getInstance().reports.add(newSighting);
 
             }
             @Override

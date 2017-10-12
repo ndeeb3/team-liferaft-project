@@ -43,7 +43,7 @@ public class RatSightingFragment extends Fragment {
             String item_id = getArguments().getString(ITEM_ID);
             Log.d("DEBUG", "Starting Fragment for sighting key: " + item_id);
             int item_loc = getArguments().getInt("loc");
-            report = RatSightingAccessor.reports.get(item_loc);
+            report = FakeDatabase.getInstance().reports.get(item_loc);
             Log.d("DEBUG", "Report Fragment: " + report.getKey());
         }
     }

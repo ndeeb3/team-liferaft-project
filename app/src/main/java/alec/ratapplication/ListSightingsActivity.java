@@ -42,7 +42,7 @@ public class ListSightingsActivity extends AppCompatActivity {
         //Sets up the recycler view, adding the adapter and layout manager
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sightings_View);
         Log.d("DEBUG", "setting up recycler view");
-        recyclerView.setAdapter(new RatRecyclerViewAdapter(RatSightingAccessor.reports));
+        recyclerView.setAdapter(new RatRecyclerViewAdapter(FakeDatabase.getInstance().reports));
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
     }
 
