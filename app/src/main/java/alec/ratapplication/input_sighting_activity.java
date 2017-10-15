@@ -9,12 +9,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Button;
 
 public class input_sighting_activity extends AppCompatActivity {
     public String address;
+    private Spinner LocationTypeSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,12 @@ public class input_sighting_activity extends AppCompatActivity {
             }
         });
 
+        LocationTypeSpinner = (Spinner) findViewById(R.id.LocationTypeSpinner);
         final EditText editText = (EditText) findViewById(R.id.addressInput);
+
+        ArrayAdapter<LocationType> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        LocationTypeSpinner.setAdapter(adapter);
 
 //        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 //            @Override
@@ -50,9 +58,13 @@ public class input_sighting_activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO", editText.getText().toString());
+                Log.d("ERROR", editText.getText().toString());
+                Log.d("ERROR", (String) LocationTypeSpinner.getSelectedItem());
             }
         });
+
+
+
     }
 
 }
