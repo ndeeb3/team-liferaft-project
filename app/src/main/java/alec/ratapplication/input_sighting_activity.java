@@ -60,22 +60,23 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
                 Log.d("ERROR", editText.getText().toString());
-                Log.d("ERROR", (String) LocationTypeSpinner.getSelectedItem());
+
+
+                Log.d("ERROR", ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
             }
         });
 
-        @Override
-        public void onItemSelected(AdapterView<LocationType> parent, View view, int position, long id) {
-
-            _locationType = parent.getItemAtPosition(position).toString();
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-            _locationType = "NA";
-        }
-
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        _locationType = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        _locationType = "NA";
+    }
 }
