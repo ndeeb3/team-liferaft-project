@@ -14,8 +14,10 @@ import android.widget.Button;
 
 public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public String address;
+    public int zipcode;
     public String _locationType;
     private Spinner LocationTypeSpinner;
+    private Spinner BoroughSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,9 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         });
 
         LocationTypeSpinner = (Spinner) findViewById(R.id.LocationTypeSpinner);
-        final EditText editText = (EditText) findViewById(R.id.addressInput);
+        final EditText addressText = (EditText) findViewById(R.id.addressInput);
+        final EditText zipcodeText = (EditText) findViewById(R.id.zipcodeInput);
+
 
         ArrayAdapter<LocationType> adapter =
                 new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.values());
@@ -44,11 +48,22 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ERROR", editText.getText().toString());
-                Log.d("ERROR", ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
+                Log.d("INFO", addressText.getText().toString());
+                Log.d("INFO", zipcodeText.getText().toString());
+                Log.d("INFO", ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
+                //Log.d("INFO", ((Borough) LocationTypeSpinner.getSelectedItem()).getValue());
             }
         });
+
+        //code for the boroughSpinner java
+        BoroughSpinner = (Spinner) findViewById(R.id.BoroughSpinner);
+        ArrayAdapter<Borough> BoroughAdapter =
+                new ArrayAdapter(this,android.R.layout.simple_spinner_item, Borough.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        BoroughSpinner.setAdapter(adapter);
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
