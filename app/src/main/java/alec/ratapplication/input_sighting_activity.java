@@ -32,25 +32,25 @@ public class input_sighting_activity extends AppCompatActivity {
         });
 
         final EditText editText = (EditText) findViewById(R.id.addressInput);
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                boolean handled = true;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    handled = true;
-                    address = editText.getText().toString();
-                    Log.d("INFO", address);
-                }
-                return handled;
-            }
-        }) ;
+
+//        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+//                boolean handled = true;
+//                if (actionId == EditorInfo.IME_ACTION_SEND) {
+//                    handled = true;
+//                    address = editText.getText().toString();
+//                    Log.d("INFO", address);
+//                }
+//                return handled;
+//            }
+//        }) ;
 
         Button button= (Button) findViewById(R.id.submitButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                address = editText.getText().toString();
-                Log.d("INFO", address);
+                Log.d("INFO", editText.getText().toString());
             }
         });
     }
