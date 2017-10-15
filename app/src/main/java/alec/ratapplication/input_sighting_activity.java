@@ -1,19 +1,15 @@
 package alec.ratapplication;
-
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Button;
 
 public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -39,40 +35,24 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         LocationTypeSpinner = (Spinner) findViewById(R.id.LocationTypeSpinner);
         final EditText editText = (EditText) findViewById(R.id.addressInput);
 
-        ArrayAdapter<LocationType> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.values());
+        ArrayAdapter<LocationType> adapter =
+                new ArrayAdapter(this,android.R.layout.simple_spinner_item, LocationType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationTypeSpinner.setAdapter(adapter);
 
-//        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-//                boolean handled = true;
-//                if (actionId == EditorInfo.IME_ACTION_SEND) {
-//                    handled = true;
-//                    address = editText.getText().toString();
-//                    Log.d("INFO", address);
-//                }
-//                return handled;
-//            }
-//        }) ;
-
-        Button button= (Button) findViewById(R.id.submitButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
                 Log.d("ERROR", editText.getText().toString());
-
-
                 Log.d("ERROR", ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
             }
         });
-
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        _locationType = adapterView.getItemAtPosition(i).toString();
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        _locationType = adapterView.getItemAtPosition(position).toString();
     }
 
     @Override
