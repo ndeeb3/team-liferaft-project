@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Button;
 
 public class input_sighting_activity extends AppCompatActivity {
     public String address;
@@ -43,6 +44,15 @@ public class input_sighting_activity extends AppCompatActivity {
                 return handled;
             }
         }) ;
+
+        Button button= (Button) findViewById(R.id.submitButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                address = editText.getText().toString();
+                Log.d("INFO", address);
+            }
+        });
     }
 
 }
