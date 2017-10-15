@@ -73,4 +73,8 @@ public class User implements Serializable {
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
+
+    /*public reportSighting(RatSightingReport report) {
+        return new RatSightingReport();
+    }*/
 }
