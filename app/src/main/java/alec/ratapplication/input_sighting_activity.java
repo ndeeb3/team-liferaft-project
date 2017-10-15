@@ -9,14 +9,16 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Button;
 
-public class input_sighting_activity extends AppCompatActivity {
+public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public String address;
+    public String _locationType;
     private Spinner LocationTypeSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,16 @@ public class input_sighting_activity extends AppCompatActivity {
             }
         });
 
+        @Override
+        public void onItemSelected(AdapterView<LocationType> parent, View view, int position, long id) {
 
+            _locationType = parent.getItemAtPosition(position).toString();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            _locationType = "NA";
+        }
 
     }
 
