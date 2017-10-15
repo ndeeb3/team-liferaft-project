@@ -24,6 +24,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_filter_menu">filterMenu</string>
+    <string name="title_activity_input_sighting_activity">input_sighting_activity</string>
 
 
 </resources>

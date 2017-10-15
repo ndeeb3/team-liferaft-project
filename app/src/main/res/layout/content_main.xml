@@ -47,6 +47,12 @@
             android:text="SightingsView"
             tools:layout_editor_absoluteX="61dp"
             tools:layout_editor_absoluteY="386dp" />
+
+        <Button
+            android:id="@+id/goToInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

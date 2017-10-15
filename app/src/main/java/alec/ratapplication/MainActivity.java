@@ -47,7 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
-
+        Button button3 = (Button) findViewById(R.id.goToInput);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = (view.getContext());
+                Intent intent = new Intent(view.getContext(), input_sighting_activity.class);
+                context.startActivity(intent);
+            }
+        });
         users = new ArrayList<>();
     }
 

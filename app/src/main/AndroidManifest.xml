@@ -45,8 +45,8 @@
             android:label="@string/title_activity_rat_sighting_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".filterMenu"
-            android:label="@string/title_activity_filter_menu"
+            android:name=".input_sighting_activity"
+            android:label="@string/title_activity_input_sighting_activity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
