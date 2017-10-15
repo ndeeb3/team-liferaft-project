@@ -34,7 +34,7 @@ public class RatSightingAccessor {
      */
     public static void loadSightings() {
         //limit to first limits the number of entries the query will access
-        Query tempquery = mDatabase;//.limitToFirst(100);
+        Query tempquery = mDatabase.limitToFirst(100);
         tempquery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
