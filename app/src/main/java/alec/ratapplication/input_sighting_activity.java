@@ -1,4 +1,5 @@
 package alec.ratapplication;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,8 +17,11 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
 
     private Spinner LocationTypeSpinner;
     private Spinner BoroughSpinner;
+    private RatSightingReport newReport;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        newReport = new RatSightingReport();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_sighting_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,11 +50,26 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO", "The address: " + addressText.getText().toString());
-                Log.d("INFO", "The zipcode" + zipcodeText.getText().toString());
-                Log.d("INFO", "The location type" + ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
-                Borough bor = (Borough) BoroughSpinner.getSelectedItem();
-                Log.d("INFO", "The borough" + bor.toString());
+                Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
+                newReport.setAddress(addressText.getText().toString());
+//                Log.d("INFO", "The address: " + addressText.getText().toString());
+                newReport.setZipcode(Integer.parseInt(zipcodeText.getText().toString()));
+//                Log.d("INFO", "The zipcode" + zipcodeText.getText().toString());
+                newReport.setLocationType(LocationTypeSpinner.getSelectedItem().toString());
+//                Log.d("INFO", "The location type" + ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
+                newReport.setBorough(BoroughSpinner.getSelectedItem().toString());
+//                Borough bor = (Borough) BoroughSpinner.getSelectedItem();
+//                Log.d("INFO", "The borough" + bor.toString());
+                startActivity(intent);
+            }
+        });
+
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

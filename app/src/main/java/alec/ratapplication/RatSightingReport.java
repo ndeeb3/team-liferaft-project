@@ -43,6 +43,10 @@ public class RatSightingReport {
         this.borough = borough;
     }
 
+    public RatSightingReport() {
+        this(null, 0, 0, null, null, 0, null, null, null);
+    }
+
     public String getKey() {
         return key;
     }
@@ -77,6 +81,38 @@ public class RatSightingReport {
 
     public String getBorough() {
         return borough;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
+    }
+
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setBorough(String borough) {
+        this.borough = borough;
     }
     
 }
