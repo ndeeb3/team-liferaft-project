@@ -13,9 +13,7 @@ import android.widget.Spinner;
 import android.widget.Button;
 
 public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    public String address;
-    public int zipcode;
-    public String _locationType;
+
     private Spinner LocationTypeSpinner;
     private Spinner BoroughSpinner;
     @Override
@@ -48,10 +46,11 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO", addressText.getText().toString());
-                Log.d("INFO", zipcodeText.getText().toString());
-                Log.d("INFO", ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
-                //Log.d("INFO", ((Borough) LocationTypeSpinner.getSelectedItem()).getValue());
+                Log.d("INFO", "The address: " + addressText.getText().toString());
+                Log.d("INFO", "The zipcode" + zipcodeText.getText().toString());
+                Log.d("INFO", "The location type" + ((LocationType) LocationTypeSpinner.getSelectedItem()).getValue());
+                Borough bor = (Borough) BoroughSpinner.getSelectedItem();
+                Log.d("INFO", "The borough" + bor.toString());
             }
         });
 
@@ -59,19 +58,17 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         BoroughSpinner = (Spinner) findViewById(R.id.BoroughSpinner);
         ArrayAdapter<Borough> BoroughAdapter =
                 new ArrayAdapter(this,android.R.layout.simple_spinner_item, Borough.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        BoroughSpinner.setAdapter(adapter);
+        BoroughAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        BoroughSpinner.setAdapter(BoroughAdapter);
     }
 
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-        _locationType = adapterView.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        _locationType = "NA";
     }
 }
