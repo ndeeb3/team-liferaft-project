@@ -1,6 +1,4 @@
 package alec.ratapplication;
-import android.nfc.Tag;
-import android.os.Debug;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -10,9 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -33,76 +29,88 @@ public class RatSightingAccessor {
      * as firebase does this asyncronusly, will not stop the progress of the program
      */
     public static void loadSightings() {
-        //limit to first limits the number of entries the query will access
-        Query tempquery = mDatabase.limitToFirst(100);
-        tempquery.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        //
+        if(DataModel.getInstance().reports.size() == 0) {
+            //limit to first limits the number of entries the query will access
+            Query tempquery = mDatabase.limitToLast(100);
+            tempquery.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    if (dataSnapshot.child("Incident Address").getValue() != null && dataSnapshot.child("Incident Address").getValue().equals("TEST")) {
+                        mDatabase.child(dataSnapshot.getKey()).removeValue();
+                        return;
+                    }
+                    Log.d("DEBUG", dataSnapshot.toString());
+                    String key = (String) dataSnapshot.child("Unique Key").getValue();
+                    double lat = 0;
+                    if (!((String) dataSnapshot.child("Latitude").getValue()).equals("")) {
+                        lat = Double.valueOf((String) dataSnapshot.child("Latitude").getValue());
+                    }
 
-                String key = (String) dataSnapshot.child("Unique Key").getValue();
-                Log.d("DEBUG", dataSnapshot.toString());
-                double lat = 0;
-                if(!((String)dataSnapshot.child("Latitude").getValue()).equals("")) {
-                    lat = Double.valueOf((String)dataSnapshot.child("Latitude").getValue());
+                    double lon = 0;
+                    if (!((String) dataSnapshot.child("Longitude").getValue()).equals("")) {
+                        lon = Double.valueOf((String) dataSnapshot.child("Longitude").getValue());
+                    }
+
+                    String dateTime = "NO TIME GIVEN";
+                    if (!((String) dataSnapshot.child("Created Date").getValue()).equals("")) {
+                        dateTime = (String) dataSnapshot.child("Created Date").getValue();
+                    }
+
+                    String loc = "NO LOCATION GIVEN";
+                    if (!((String) dataSnapshot.child("Location Type").getValue()).equals("")) {
+                        loc = (String) dataSnapshot.child("Location Type").getValue();
+                    }
+
+                    int zip = 0;
+                    if (!((String) dataSnapshot.child("Incident Zip").getValue()).equals("")
+                            && !((String) dataSnapshot.child("Incident Zip").getValue()).equals("N/A")) {
+                        zip = Integer.valueOf((String) dataSnapshot.child("Incident Zip").getValue());
+                    }
+
+                    String address = "NO ADDRESS GIVEN";
+                    if (!((String) dataSnapshot.child("Incident Address").getValue()).equals("")) {
+                        address = (String) dataSnapshot.child("Incident Address").getValue();
+                    }
+                    Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
+
+                    String city = "NO CITY GIVEN";
+                    if (!((String) dataSnapshot.child("City").getValue()).equals("")) {
+                        city = (String) dataSnapshot.child("City").getValue();
+                    }
+
+                    String borough = "NO BOROUGH GIVEN";
+                    if (!((String) dataSnapshot.child("Borough").getValue()).equals("")) {
+                        borough = (String) dataSnapshot.child("Borough").getValue();
+                    }
+
+                    RatSightingReport newSighting = new RatSightingReport(key, lat, lon, dateTime, loc, zip, address, city, borough);
+                    DataModel.getInstance().reports.add(newSighting);
+                    DataModel.getInstance().newKey = Integer.valueOf(key) + 1;
+
                 }
 
-                double lon = 0;
-                if(!((String)dataSnapshot.child("Longitude").getValue()).equals("")) {
-                    lon = Double.valueOf((String)dataSnapshot.child("Longitude").getValue());
-                }
-                String dateTime = "NO TIME GIVEN";
-                if(!((String)dataSnapshot.child("Created Date").getValue()).equals("")) {
-                    dateTime = (String)dataSnapshot.child("Created Date").getValue();
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
                 }
 
-                String loc = "NO LOCATION GIVEN";
-                if(!((String)dataSnapshot.child("Location Type").getValue()).equals("")) {
-                    loc = (String)dataSnapshot.child("Location Type").getValue();
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
                 }
 
-                int zip = 0;
-                if(!((String)dataSnapshot.child("Incident Zip").getValue()).equals("")
-                        && !((String)dataSnapshot.child("Incident Zip").getValue()).equals("N/A")) {
-                    zip = Integer.valueOf((String)dataSnapshot.child("Incident Zip").getValue());
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
                 }
 
-                String address = "NO ADDRESS GIVEN";
-                if(!((String)dataSnapshot.child("Incident Address").getValue()).equals("")) {
-                    address = (String)dataSnapshot.child("Incident Address").getValue();
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w("DEBUG", "ERROR", databaseError.toException());
                 }
-                Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
-
-                String city = "NO CITY GIVEN";
-                if(!((String)dataSnapshot.child("City").getValue()).equals("")) {
-                    city = (String)dataSnapshot.child("City").getValue();
-                }
-
-                String borough = "NO BOROUGH GIVEN";
-                if(!((String)dataSnapshot.child("Borough").getValue()).equals("")) {
-                    borough = (String)dataSnapshot.child("Borough").getValue();
-                }
-
-                RatSightingReport newSighting = new RatSightingReport(key,lat,lon,dateTime,loc,zip,address,city,borough);
-                FakeDatabase.getInstance().reports.add(newSighting);
-
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("DEBUG", "ERROR", databaseError.toException());
-            }
-        });
+            });
+        }
     }
 
 
@@ -145,7 +153,18 @@ public class RatSightingAccessor {
      * @param sighting rat sighting to be put into the database
      */
     public void inputSighting(RatSightingReport sighting) {
-        // Todo
+        DatabaseReference newRef = mDatabase.push();
+        //newRef.setValue(sighting);
+        newRef.child("Longitude").setValue(Double.toString(sighting.getLongitude()));
+        newRef.child("Latitude").setValue(Double.toString(sighting.getLatitude()));
+        newRef.child("Unique Key").setValue(Integer.toString(DataModel.getInstance().newKey));
+        newRef.child("Incident Address").setValue(sighting.getAddress());
+        newRef.child("Location Type").setValue(sighting.getLocationType());
+        newRef.child("Incident Zip").setValue(Integer.toString(sighting.getZipcode()));
+        newRef.child("City").setValue(sighting.getCity());
+        newRef.child("Borough").setValue(sighting.getBorough());
+        newRef.child("Created Date").setValue(sighting.getDateTime());
+        Log.d("DEBUG", newRef.toString());
     }
 
     /**
@@ -155,7 +174,7 @@ public class RatSightingAccessor {
     public void createAccount(User user) {
         // Todo this code is temporary
         Log.d("DEBUG", "Inside accessor" + user.getContactInfo());
-        FakeDatabase.getInstance().userList.add(user);
+        DataModel.getInstance().userList.add(user);
     }
     /**
      *
@@ -163,7 +182,7 @@ public class RatSightingAccessor {
      */
     public ArrayList<User> getUsers(){
         // Todo this code is temporary
-        return FakeDatabase.getInstance().userList;
+        return DataModel.getInstance().userList;
        // mDatabase.
     }
 }

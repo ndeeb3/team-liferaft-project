@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Button;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner LocationTypeSpinner;
@@ -39,6 +42,12 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         LocationTypeSpinner = (Spinner) findViewById(R.id.LocationTypeSpinner);
         final EditText addressText = (EditText) findViewById(R.id.addressInput);
         final EditText zipcodeText = (EditText) findViewById(R.id.zipcodeInput);
+        final EditText cityText = (EditText) findViewById(R.id.cityInput);
+        final EditText timeText = (EditText) findViewById(R.id.timeInput);
+        final String time = DateFormat.getDateTimeInstance().format(new Date());
+        timeText.setText(time);
+        final EditText inputLatitude = (EditText) findViewById(R.id.inputLatitude);
+        final EditText inputLongitude = (EditText) findViewById(R.id.inputLongitude);
 
 
         ArrayAdapter<LocationType> adapter =
@@ -50,7 +59,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
+                //Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
                 newReport.setAddress(addressText.getText().toString());
 //                Log.d("INFO", "The address: " + addressText.getText().toString());
                 newReport.setZipcode(Integer.parseInt(zipcodeText.getText().toString()));
@@ -60,7 +69,15 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
                 newReport.setBorough(BoroughSpinner.getSelectedItem().toString());
 //                Borough bor = (Borough) BoroughSpinner.getSelectedItem();
 //                Log.d("INFO", "The borough" + bor.toString());
-                startActivity(intent);
+                newReport.setCity(cityText.getText().toString());
+                newReport.setDateTime(timeText.getText().toString());
+                newReport.setLatitude(Double.valueOf(inputLatitude.getText().toString()));
+                newReport.setLongitude(Double.valueOf(inputLongitude.getText().toString()));
+
+                //startActivity(intent);
+                RatSightingAccessor accessor = new RatSightingAccessor();
+                accessor.inputSighting(newReport);
+                finish();
             }
         });
 
@@ -68,8 +85,10 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(input_sighting_activity.this, MainActivity.class);
+                startActivity(intent);*/
+                finish();
+
             }
         });
 

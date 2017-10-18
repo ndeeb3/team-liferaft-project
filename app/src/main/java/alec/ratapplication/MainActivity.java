@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         //begin loading the rat sightings from firebase
         RatSightingAccessor.loadSightings();
+
         Button button =  (Button) findViewById(R.id.LogoutButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

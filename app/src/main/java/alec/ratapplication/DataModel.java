@@ -8,19 +8,19 @@ import java.util.List;
  * Created by micha on 10/2/2017.
  */
 
-class FakeDatabase {
+class DataModel {
     // try changing this to final
-    private static FakeDatabase ourInstance = new FakeDatabase();
+    private static DataModel ourInstance = new DataModel();
     public ArrayList<User> userList;
-
     public List<RatSightingReport> reports;
-
-    static FakeDatabase getInstance() {
+    public int newKey;
+    static DataModel getInstance() {
         return ourInstance;
     }
 
-    private FakeDatabase() {
+    private DataModel() {
         userList = new ArrayList<>();
         reports = new LinkedList<>();
+        newKey = 0;
     }
 }

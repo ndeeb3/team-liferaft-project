@@ -2,11 +2,7 @@ package alec.ratapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,16 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ListSightingsActivity extends AppCompatActivity {
@@ -42,7 +31,7 @@ public class ListSightingsActivity extends AppCompatActivity {
         //Sets up the recycler view, adding the adapter and layout manager
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sightings_View);
         Log.d("DEBUG", "setting up recycler view");
-        recyclerView.setAdapter(new RatRecyclerViewAdapter(FakeDatabase.getInstance().reports));
+        recyclerView.setAdapter(new RatRecyclerViewAdapter(DataModel.getInstance().reports));
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
     }
 

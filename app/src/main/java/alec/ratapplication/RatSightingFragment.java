@@ -1,10 +1,6 @@
 package alec.ratapplication;
 
-import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +39,7 @@ public class RatSightingFragment extends Fragment {
             String item_id = getArguments().getString(ITEM_ID);
             Log.d("DEBUG", "Starting Fragment for sighting key: " + item_id);
             int item_loc = getArguments().getInt("loc");
-            report = FakeDatabase.getInstance().reports.get(item_loc);
+            report = DataModel.getInstance().reports.get(item_loc);
             Log.d("DEBUG", "Report Fragment: " + report.getKey());
         }
     }
