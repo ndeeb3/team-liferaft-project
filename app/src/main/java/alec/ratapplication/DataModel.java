@@ -11,7 +11,9 @@ import java.util.List;
 class DataModel {
     // try changing this to final
     private static DataModel ourInstance = new DataModel();
+    //the list of user objects
     public ArrayList<User> userList;
+    //the list of rat reports from the database
     public List<RatSightingReport> reports;
     public int newKey;
     static DataModel getInstance() {

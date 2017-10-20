@@ -25,7 +25,7 @@ public class RatSightingAccessor {
     }
 
     /**
-     * Method that loads the sightings into the list
+     * Method that loads the sightings into the data model from the database
      * as firebase does this asyncronusly, will not stop the progress of the program
      */
     public static void loadSightings() {
@@ -72,7 +72,7 @@ public class RatSightingAccessor {
                     if (!((String) dataSnapshot.child("Incident Address").getValue()).equals("")) {
                         address = (String) dataSnapshot.child("Incident Address").getValue();
                     }
-                    Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
+                    //Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
 
                     String city = "NO CITY GIVEN";
                     if (!((String) dataSnapshot.child("City").getValue()).equals("")) {
@@ -135,13 +135,13 @@ public class RatSightingAccessor {
      *
      * @return a list of rat report sightings. Alec will replace the code we put here
      */
-    public RatSightingReport[] getAllSightings() {
+    /*public RatSightingReport[] getAllSightings() {
         LinkedList<RatSightingReport> sightings = new LinkedList<>();
         return new RatSightingReport[0];
-    }
+    }-*
 
     /**
-     *
+     * Updates the map with a list of reports
      * @param reports the reports will get get added to the map
      */
     public void updateMap(RatSightingReport[] reports){
@@ -149,7 +149,7 @@ public class RatSightingAccessor {
     }
 
     /**
-     *
+     * This method inputs a sighting into the database
      * @param sighting rat sighting to be put into the database
      */
     public void inputSighting(RatSightingReport sighting) {
@@ -168,7 +168,7 @@ public class RatSightingAccessor {
     }
 
     /**
-     *
+     * Generates a new user entry and passes it to the database
      * @param user user to be added to the database
      */
     public void createAccount(User user) {
@@ -177,6 +177,7 @@ public class RatSightingAccessor {
         DataModel.getInstance().userList.add(user);
     }
     /**
+     * Gets the list of users from the data model
      *
      * @return an array of the Users
      */
