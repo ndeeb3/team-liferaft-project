@@ -70,7 +70,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
 //                Borough bor = (Borough) BoroughSpinner.getSelectedItem();
 //                Log.d("INFO", "The borough" + bor.toString());
                 newReport.setCity(cityText.getText().toString());
-                newReport.setDateTime(timeText.getText().toString());
+                newReport.setDateTime(new Date()); //can we trust the user. i vote no
                 newReport.setLatitude(Double.valueOf(inputLatitude.getText().toString()));
                 newReport.setLongitude(Double.valueOf(inputLongitude.getText().toString()));
 

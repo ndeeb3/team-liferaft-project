@@ -10,7 +10,7 @@ public class RatSightingReport {
     private String key;
     private double latitude;
     private double longitude;
-    private String dateTime;
+    private Date dateTime;
     private String locationType;
     private int zipcode;
     private String address;
@@ -29,7 +29,7 @@ public class RatSightingReport {
      * @param city the city of the rat sighting
      * @param borough the borough from the Borough enum
      */
-    public RatSightingReport(String key, double latitude, double longitude, String dateTime,
+    public RatSightingReport(String key, double latitude, double longitude, Date dateTime,
                              String locationType, int zipcode, String address,
                              String city, String borough) {
         this.key = key;
@@ -59,7 +59,7 @@ public class RatSightingReport {
         return longitude;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
@@ -91,7 +91,7 @@ public class RatSightingReport {
         this.longitude = longitude;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 

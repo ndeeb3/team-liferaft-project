@@ -9,6 +9,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -24,6 +27,29 @@ public class RatSightingAccessor {
         Query recentPostsQuery = mDatabase;
     }
 
+    /**
+     *
+     * @return
+     */
+
+    public static Date convertStringToDate(String strDateTime) {
+        Date dateTime = null;
+        DateFormat df = new SimpleDateFormat("mm/dd/yyyy hh:mm");
+        try {
+            dateTime = df.parse(strDateTime);
+        } catch (Exception e) {
+            Log.e("Warn", "The dateTime is in the wrong format in the database: ", e);
+        }
+        return dateTime;
+    }
+    public static String convertDateToString(Date dateTime) throws NullPointerException {
+        if (dateTime == null) {
+            throw new NullPointerException("DATETIME IS A NULL");
+        }
+        DateFormat df = new SimpleDateFormat("mm/dd/yyyy hh:mm");
+
+        return df.format(dateTime);
+    }
     /**
      * Method that loads the sightings into the data model from the database
      * as firebase does this asyncronusly, will not stop the progress of the program
@@ -52,9 +78,10 @@ public class RatSightingAccessor {
                         lon = Double.valueOf((String) dataSnapshot.child("Longitude").getValue());
                     }
 
-                    String dateTime = "NO TIME GIVEN";
+                    Date dateTime = null;
                     if (!((String) dataSnapshot.child("Created Date").getValue()).equals("")) {
-                        dateTime = (String) dataSnapshot.child("Created Date").getValue();
+                        String strDateTime = (String) dataSnapshot.child("Created Date").getValue();
+                        dateTime = RatSightingAccessor.convertStringToDate(strDateTime);
                     }
 
                     String loc = "NO LOCATION GIVEN";
@@ -122,13 +149,31 @@ public class RatSightingAccessor {
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
-    public RatSightingReport[] filterSightings(LocationType locationType,
+    public ArrayList<RatSightingReport> filterSightings(LocationType locationType,
                                                Date startDate,
                                                Date endDate,
                                                Borough borough){
-        Query tempQuery = mDatabase;//.limitToFirst(100);
+
+       // Query tempQuery = mDatabase;//.limitToFirst(100);
         //tempQuery.addChildEventListener(dataListener);
-        return new RatSightingReport[0];
+        ArrayList<RatSightingReport> reports = new ArrayList<>();
+        for (RatSightingReport report: DataModel.getInstance().reports) {
+            if ((locationType != null) && !report.getLocationType().equals(locationType)) {
+                continue;
+            }
+            if ((startDate != null) && (report.getDateTime().compareTo(startDate) < 0)) {
+                continue;
+            }
+            if ((endDate != null) && (report.getDateTime().compareTo(endDate) > 0)) {
+                continue;
+            }
+            if ((borough != null) && (!report.getBorough().equals(borough))) {
+                continue;
+            }
+            reports.add(report);
+
+        }
+        return reports;
     }
 
     /**
@@ -163,8 +208,8 @@ public class RatSightingAccessor {
         newRef.child("Incident Zip").setValue(Integer.toString(sighting.getZipcode()));
         newRef.child("City").setValue(sighting.getCity());
         newRef.child("Borough").setValue(sighting.getBorough());
-        newRef.child("Created Date").setValue(sighting.getDateTime());
-        Log.d("DEBUG", newRef.toString());
+        newRef.child("Created Date").setValue(RatSightingAccessor.convertDateToString(sighting.getDateTime()));
+        Log.e("Error", "LOOOOOOOOOOK" + sighting.getDateTime().toString());
     }
 
     /**

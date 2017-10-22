@@ -68,7 +68,11 @@ public class ListSightingsActivity extends AppCompatActivity {
             //Sets up the views in the list using the holder
             holder.sighting = sightings.get(position);
             holder.addressView.setText(sightings.get(position).getAddress());
-            holder.timeView.setText(sightings.get(position).getDateTime());
+            if (sightings.get(position).getDateTime() == null) {
+                holder.timeView.setText("no date");
+            } else {
+                holder.timeView.setText(sightings.get(position).getDateTime().toString());
+            }
 
             //Opens a new detailed sighting view
             //also passes in the display fragment and posistion of the clicked item
