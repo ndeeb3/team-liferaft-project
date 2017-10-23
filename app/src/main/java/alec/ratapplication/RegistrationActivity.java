@@ -2,6 +2,7 @@ package alec.ratapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +13,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private AutoCompleteTextView email;
     private EditText username;
@@ -32,6 +45,24 @@ public class RegistrationActivity extends AppCompatActivity {
         email = (AutoCompleteTextView) findViewById(R.id.email);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d("DEBUG", "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d("DEBUG", "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
 
         //register new user and log them in
         Button registrationButton = (Button) findViewById(R.id.register_button);
@@ -67,6 +98,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
     public boolean checkValidFormat(){
         return true;
         /*if(email.getText().toString() == null) {
@@ -82,6 +127,28 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public User registerUser(User u) {
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("DEBUG", "createUserWithEmail:onComplete:" + task.isSuccessful());
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(RegistrationActivity.this, "REG FAILED",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        if(adminCheckBox.isChecked()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if(user != null) {
+                            }
+
+                        }
+                    }
+
+
+                });
         u = new User(username.getText().toString(), password.getText().toString(), email.getText().toString());
         Log.d("", u.getContactInfo());
         ratSightingAccessor.createAccount(u);
