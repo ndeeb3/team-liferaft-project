@@ -79,8 +79,8 @@ public class RatSightingAccessor {
                     }
 
                     Date dateTime = null;
-                    if (!((String) dataSnapshot.child("Created Date").getValue()).equals("")) {
-                        String strDateTime = (String) dataSnapshot.child("Created Date").getValue();
+                    if (!(dataSnapshot.child("Created Date").getValue()).toString().equals("")) {
+                        String strDateTime = dataSnapshot.child("Created Date").getValue().toString();
                         dateTime = RatSightingAccessor.convertStringToDate(strDateTime);
                     }
 
