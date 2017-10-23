@@ -57,6 +57,16 @@ public class MainActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
+        Button button4 = (Button) findViewById(R.id.goToMap);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = (view.getContext());
+                Intent intent = new Intent(view.getContext(), MapActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         users = new ArrayList<>();
     }
 

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="alec.ratapplication.Logout"
-    tools:showIn="@layout/activity_main">
+    tools:context="alec.ratapplication.MapActivity"
+    tools:showIn="@layout/activity_map">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -26,39 +26,10 @@
         tools:layout_constraintTop_creator="1">
 
         <TextView
-            android:id="@+id/WelcomeUserText"
+            android:id="@+id/titletext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WELCOME USER" />
-
-        <Button
-            android:id="@+id/LogoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="none"
-            android:text="Logout"
-            tools:layout_editor_absoluteX="127dp"
-            tools:layout_editor_absoluteY="279dp" />
-
-        <Button
-            android:id="@+id/SightingsView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SightingsView"
-            tools:layout_editor_absoluteX="61dp"
-            tools:layout_editor_absoluteY="386dp" />
-
-        <Button
-            android:id="@+id/goToInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Input Rat Sighting" />
-
-        <Button
-            android:id="@+id/goToMap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Map" />
+            android:text="This is a map." />
 
     </LinearLayout>
 
