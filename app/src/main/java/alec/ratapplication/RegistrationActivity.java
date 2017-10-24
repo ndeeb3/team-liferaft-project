@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private AutoCompleteTextView mEmailView;
-    private EditText username;
+    private EditText mUsernameView;
     private EditText mPasswordView;
     private CheckBox adminCheckBox;
     private RatSightingAccessor ratSightingAccessor = new RatSightingAccessor();
@@ -44,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         adminCheckBox = (CheckBox) findViewById(R.id.adminChkBox);
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        username = (EditText) findViewById(R.id.username);
+        mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
@@ -107,21 +108,16 @@ public class RegistrationActivity extends AppCompatActivity {
     private void attemptRegistration() {
 
         mEmailView.setError(null);
+        mUsernameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
+        String username = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
-
-        // Check for a valid mPasswordView, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
 
         // Check for a valid mEmailView address.
         if (TextUtils.isEmpty(email)) {
@@ -134,12 +130,28 @@ public class RegistrationActivity extends AppCompatActivity {
             cancel = true;
         }
 
+        // Check for a valid mUsername, if the user entered one.
+        if (TextUtils.isEmpty(username)) {
+            Log.d("DEBUG", username + " Username Status:" + TextUtils.isEmpty(username));
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
+            cancel = true;
+        }
+
+        // Check for a valid mPasswordView, if the user entered one.
+        if (TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
             Log.d("DEBUG", "Login Validated");
+            final String displayName = username;
             //Firebase will now register the user
             mAuth.createUserWithEmailAndPassword(mEmailView.getText().toString(), mPasswordView.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -154,22 +166,32 @@ public class RegistrationActivity extends AppCompatActivity {
                     }
 
                     //Logic if the user is successfully registered
-                    if (adminCheckBox.isChecked()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            //add the user to the users list in the database as well
-                            DatabaseReference mRef = FirebaseDatabase.getInstance()
-                                    .getReference().child("users");
-                            //mRef.child()
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    DatabaseReference mRef = FirebaseDatabase.getInstance()
+                            .getReference().child("users");
+                    if (user != null) {
+                        //set the username
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(displayName).build();
 
+                        user.updateProfile(profileUpdates);
+
+                        //add admin status and other user specific data if needed
+                        if (adminCheckBox.isChecked()) {
+                            //add the user to the users list in the database as well
+                            mRef.child(user.getUid()).child("admin").setValue("true");
+                        } else {
+                            mRef.child(user.getUid()).child("admin").setValue("false");
                         }
                     }
+
                     Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             });
         }
     }
+
 
 
     /**
@@ -192,7 +214,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /*public User registerUser(User u) {
-        u = new User(username.getText().toString(), mPasswordView.getText().toString(), mEmailView.getText().toString());
+        u = new User(mUsernameView.getText().toString(), mPasswordView.getText().toString(), mEmailView.getText().toString());
         Log.d("", u.getContactInfo());
         ratSightingAccessor.createAccount(u);
         return u;
