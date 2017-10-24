@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "801067162383",
-    "firebase_url": "https://team-liferaft-project.firebaseio.com",
-    "project_id": "team-liferaft-project",
-    "storage_bucket": "team-liferaft-project.appspot.com"
+    "project_number": "556803259852",
+    "firebase_url": "https://team-liferaft-project2.firebaseio.com",
+    "project_id": "team-liferaft-project2",
+    "storage_bucket": "team-liferaft-project2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:801067162383:android:5d12250c35991b31",
+        "mobilesdk_app_id": "1:556803259852:android:5d12250c35991b31",
         "android_client_info": {
           "package_name": "alec.ratapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "801067162383-k50lvm0nvemmsojvglc5kvehvg312996.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "alec.ratapplication",
-            "certificate_hash": "7ef93e8f2590893fd899e4434ae931efaca2590a"
-          }
-        },
-        {
-          "client_id": "801067162383-23gcvr2b70pkicv6v6qvrmfnmisv624o.apps.googleusercontent.com",
+          "client_id": "556803259852-epcm9ume8qiaakmna990g16m1mppff4e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB-aaFTkJ5fTXqWIFzfnUsXTw0RFPv1_7k"
+          "current_key": "AIzaSyCUUEzEjfEUOmEIV8OPvg2KEb3eeBOj3ts"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "801067162383-23gcvr2b70pkicv6v6qvrmfnmisv624o.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -156,6 +158,10 @@ public class RegistrationActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             //add the user to the users list in the database as well
+                            DatabaseReference mRef = FirebaseDatabase.getInstance()
+                                    .getReference().child("users");
+                            //mRef.child()
+
                         }
                     }
                     Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
