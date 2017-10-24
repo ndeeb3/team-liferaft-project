@@ -34,7 +34,7 @@ public class RatSightingAccessor {
 
     public static Date convertStringToDate(String strDateTime) {
         Date dateTime = null;
-        DateFormat df = new SimpleDateFormat("mm/dd/yyyy hh:mm");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
         try {
             dateTime = df.parse(strDateTime);
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class RatSightingAccessor {
         if (dateTime == null) {
             throw new NullPointerException("DATETIME IS A NULL");
         }
-        DateFormat df = new SimpleDateFormat("mm/dd/yyyy hh:mm");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
 
         return df.format(dateTime);
     }
@@ -55,19 +55,28 @@ public class RatSightingAccessor {
      * as firebase does this asyncronusly, will not stop the progress of the program
      */
     public static void loadSightings() {
-        //
+        //DatabaseReference reports = mDatabase.child("reports");
+        Log.d("DEBUG", mDatabase.child("reports").toString());
         if(DataModel.getInstance().reports.size() == 0) {
+
             //limit to first limits the number of entries the query will access
+            if(true) {
+                return;
+            }
             Query tempquery = mDatabase.limitToLast(100);
             tempquery.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                     if (dataSnapshot.child("Incident Address").getValue() != null && dataSnapshot.child("Incident Address").getValue().equals("TEST")) {
                         mDatabase.child(dataSnapshot.getKey()).removeValue();
                         return;
                     }
+
                     Log.d("DEBUG", dataSnapshot.toString());
                     String key = (String) dataSnapshot.child("Unique Key").getValue();
+
+
                     double lat = 0;
                     if (!((String) dataSnapshot.child("Latitude").getValue()).equals("")) {
                         lat = Double.valueOf((String) dataSnapshot.child("Latitude").getValue());
@@ -114,6 +123,21 @@ public class RatSightingAccessor {
                     RatSightingReport newSighting = new RatSightingReport(key, lat, lon, dateTime, loc, zip, address, city, borough);
                     DataModel.getInstance().reports.add(newSighting);
                     DataModel.getInstance().newKey = Integer.valueOf(key) + 1;
+
+                    /*DatabaseReference reports = mDatabase.child("reports");
+                    DatabaseReference movedNode = reports.push();
+                    movedNode.child("Longitude").setValue(Double.toString(newSighting.getLongitude()));
+                    movedNode.child("Latitude").setValue(Double.toString(newSighting.getLatitude()));
+                    movedNode.child("Unique Key").setValue(key);
+                    movedNode.child("Incident Address").setValue(newSighting.getAddress());
+                    movedNode.child("Location Type").setValue(newSighting.getLocationType());
+                    movedNode.child("Incident Zip").setValue(Integer.toString(newSighting.getZipcode()));
+                    movedNode.child("City").setValue(newSighting.getCity());
+                    movedNode.child("Borough").setValue(newSighting.getBorough());
+                    movedNode.child("Created Date").setValue(RatSightingAccessor.convertDateToString(newSighting.getDateTime()));
+                    //Log.d("DEBUG", mDatabase.child("reports").toString());
+
+                    mDatabase.child(dataSnapshot.getKey()).removeValue();*/
 
                 }
 

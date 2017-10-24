@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RatApplication</string>
+    <string name="app_name">RatReports</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -25,6 +25,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_filter_menu">filterMenu</string>
     <string name="title_activity_input_sighting_activity">input_sighting_activity</string>
+
+    <!-- Strings related to validation -->
+    <string name="error_invalid_address">This address is invalid</string>
+    <string name="error_invalid_zipcode">This zipcode is invalid</string>
+    <string name="error_invalid_city">This city name is invalid</string>
+    <string name="error_invalid_time">This time is invalid</string>
 
 
 </resources>

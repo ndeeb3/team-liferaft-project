@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaCodec;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,20 +38,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login with email/password.
  */
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private RatSightingAccessor ratSightingAccessor = new RatSightingAccessor();
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -60,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     public void onStart() {
@@ -99,9 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-
-
-        // Set up the login form.
+        // Set up the login form ui.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -132,8 +129,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        //mLoginFormView = findViewById(R.id.login_form);
+        //mProgressView = findViewById(R.id.login_progress);
     }
 
     /*private void populateAutoComplete() {
@@ -186,7 +183,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void attemptLogin() {
 
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -221,7 +217,7 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-
+            // There was no errors, and Firebase will now login the user
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -236,31 +232,41 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login Failed",
                                         Toast.LENGTH_SHORT).show();
                             }
-
-                            // ...
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     });
 
-            Log.d("USERS", ratSightingAccessor.getUsers().toString());
+            /*Log.d("USERS", ratSightingAccessor.getUsers().toString());
             for (User user : ratSightingAccessor.getUsers()) {
                 Log.d("DEBUG", user.getContactInfo() + user.getPassword());
                 Log.d("DEBUG", mEmailView.getText().toString() + mPasswordView.getText().toString());
                 if (user.getContactInfo().equals(mEmailView.getText().toString())
                         && user.getPassword().equals(mPasswordView.getText().toString())) {
                     Log.d("DEBUG", "LAUNCHING MAIN ACTIVITY");
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
                 }
-            }
+            }*/
             //showProgress(true);
         }
     }
 
+    /**
+     * Private email validation method that checks the email string against a email-styled regex
+     * @param email the email string that is being validated
+     * @return true if the string is a valid email, false otherwise
+     */
     private boolean isEmailValid(String email) {
-        return email.contains("@");
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        return p.matcher(email).find();
     }
 
+    /**
+     * Private password validation method that checks if the password is long enough
+     * @param password the password string that is being checked for length
+     * @return true if the password is long enough, false otherwise
+     */
     private boolean isPasswordValid(String password) {
         return password.length() > 4;
     }
