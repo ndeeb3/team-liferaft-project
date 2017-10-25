@@ -31,6 +31,7 @@
     <string name="error_invalid_zipcode">This zipcode is invalid</string>
     <string name="error_invalid_city">This city name is invalid</string>
     <string name="error_invalid_time">This time is invalid</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

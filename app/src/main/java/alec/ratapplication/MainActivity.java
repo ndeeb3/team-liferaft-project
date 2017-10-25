@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Context context = (view.getContext());
-                Intent intent = new Intent(view.getContext(), MapActivity.class);
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
                 context.startActivity(intent);
             }
         });
