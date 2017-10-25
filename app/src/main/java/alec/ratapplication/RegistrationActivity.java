@@ -163,30 +163,30 @@ public class RegistrationActivity extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Toast.makeText(RegistrationActivity.this, "Registration Failed",
                                 Toast.LENGTH_SHORT).show();
-                    }
+                    } else {
 
-                    //Logic if the user is successfully registered
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    DatabaseReference mRef = FirebaseDatabase.getInstance()
-                            .getReference().child("users");
-                    if (user != null) {
-                        //set the username
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(displayName).build();
+                        //Logic if the user is successfully registered
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        DatabaseReference mRef = FirebaseDatabase.getInstance()
+                                .getReference().child("users");
+                        if (user != null) {
+                            //set the username
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(displayName).build();
 
-                        user.updateProfile(profileUpdates);
+                            user.updateProfile(profileUpdates);
 
-                        //add admin status and other user specific data if needed
-                        if (adminCheckBox.isChecked()) {
-                            //add the user to the users list in the database as well
-                            mRef.child(user.getUid()).child("admin").setValue("true");
-                        } else {
-                            mRef.child(user.getUid()).child("admin").setValue("false");
+                            //add admin status and other user specific data if needed
+                            if (adminCheckBox.isChecked()) {
+                                //add the user to the users list in the database as well
+                                mRef.child(user.getUid()).child("admin").setValue("true");
+                            } else {
+                                mRef.child(user.getUid()).child("admin").setValue("false");
+                            }
                         }
+                        Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
-
-                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-                    startActivity(intent);
                 }
             });
         }
