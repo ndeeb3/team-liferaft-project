@@ -2,12 +2,15 @@ package alec.ratapplication;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -50,8 +53,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double longitude = report.getLongitude();
             if (latitude != 0 && longitude != 0 && report.getDateTime() != null) {
                 LatLng newMarker = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(newMarker).title("Report on " + report.getDateTime()));
+                mMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
+                        + report.getAddress()).snippet(report.toString()));
+                //mMap.addMarker(new MarkerOptions().position(loc).title(r.getName()).snippet(r.getDescription()));
             }
         }
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+    }
+
+    private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        CustomInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title));
+            tvTitle.setText(marker.getTitle());
+            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            tvSnippet.setText(marker.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
     }
 }

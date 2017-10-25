@@ -1,5 +1,7 @@
 package alec.ratapplication;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -114,5 +116,10 @@ public class RatSightingReport {
     public void setBorough(String borough) {
         this.borough = borough;
     }
-    
+
+    public String toString() {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        return "Key: " + key + "\nTime: " + df.format(dateTime) + "\nAddress: " + address;
+    }
+
 }
