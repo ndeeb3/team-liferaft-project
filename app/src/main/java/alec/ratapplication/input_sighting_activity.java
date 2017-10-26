@@ -113,7 +113,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         View focusView = null;
 
         // Check for a valid address
-        if (!TextUtils.isEmpty(address)) {
+        if (TextUtils.isEmpty(address)) {
             addressText.setError(getString(R.string.error_field_required));
             focusView = addressText;
             cancel = true;
@@ -131,7 +131,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         }
 
         // Check for a valid city
-        if (!TextUtils.isEmpty(city)) {
+        if (TextUtils.isEmpty(city)) {
             cityText.setError(getString(R.string.error_field_required));
             focusView = cityText;
             cancel = true;
@@ -139,16 +139,17 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
 
         // Check for a valid time
         if (TextUtils.isEmpty(time)) {
-            zipcodeText.setError(getString(R.string.error_field_required));
+            timeText.setError(getString(R.string.error_field_required));
             focusView = timeText;
             cancel = true;
-        } else if (!isTimeValid(time)) {
-            zipcodeText.setError(getString(R.string.error_invalid_time));
+        } else if (!isTimeValid2(time)) {
+            timeText.setError(getString(R.string.error_invalid_time));
             focusView = timeText;
             cancel = true;
         }
 
         if (cancel) {
+            Log.e("Error", "Cancellation");
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
@@ -183,12 +184,21 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
      * @param time the time string that is being validated
      * @return true if the string is a valid time, false otherwise
      */
+    @Deprecated
     private boolean isTimeValid(String time) {
         //Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
         return time.matches("\\d{2}/\\d{2}/\\d{4}\\s\\d{2}\\d{2}\\s(?:am|AM|pm|PM)");
     }
-
+    private boolean isTimeValid2(String time) {
+        try{
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+            df.parse(time);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 
     @Override

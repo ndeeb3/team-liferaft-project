@@ -211,7 +211,7 @@ public class RatSightingAccessor {
      * @param sighting rat sighting to be put into the database
      */
     public void inputSighting(RatSightingReport sighting) {
-        DatabaseReference newRef = mDatabase.push();
+        DatabaseReference newRef = mDatabase.child("reports").push();
         //newRef.setValue(sighting);
         newRef.child("Longitude").setValue(Double.toString(sighting.getLongitude()));
         newRef.child("Latitude").setValue(Double.toString(sighting.getLatitude()));
