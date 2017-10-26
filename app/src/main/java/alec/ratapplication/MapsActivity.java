@@ -28,13 +28,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sightings = DataModel.getInstance().reports;
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null) { //without instance data it will check extras
             Bundle extras = getIntent().getExtras();
             if(extras != null) {
                 sightings = (List) extras.getSerializable("filtered");
             }
         } else {
-             sightings = (List) savedInstanceState.getSerializable("filtered");
+             sightings = (List) savedInstanceState.getSerializable("filtered"); //retrieve list
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);

@@ -33,7 +33,7 @@
                     android:id="@+id/textViewStart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search From:" />
+                    android:text="Search From (Exclusive):" />
 
                 <Button
                     android:id="@+id/startDateButton"
@@ -52,7 +52,7 @@
                     android:id="@+id/textViewEnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Search To" />
+                    android:text="Search To (Inclusive):" />
 
                 <Button
                     android:id="@+id/endDateButton"

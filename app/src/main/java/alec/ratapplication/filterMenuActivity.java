@@ -17,13 +17,22 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
 
 /**
  * A login screen that offers login with email/password.
  */
 public class filterMenuActivity extends AppCompatActivity {
+    public Date startDate = null; // a date which is used by the filter menu
+    public Date endDate = null; // a date which is used by the filter menu
+    public List<RatSightingReport> filteredReports = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +46,9 @@ public class filterMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DialogFragment newFragment = new startDatePicker();
                 newFragment.show(getSupportFragmentManager(), "timePicker");
-                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //       .setAction("Action", null).show();
             }
         });
+
         //end Date Button
         Button button2 =  (Button) findViewById(R.id.endDateButton);
         button2.setText("No date");
@@ -49,30 +57,30 @@ public class filterMenuActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DialogFragment newFragment = new endDatePicker();
                 newFragment.show(getSupportFragmentManager(), "timePicker");
-                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //       .setAction("Action", null).show();
             }
         });
+        //filter button.
+        //if you just hit filter with no options it will show all the originals
         Button button3 = (Button) findViewById(R.id.buttonFilter);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                DataModel.getInstance().filteredReports = RatSightingAccessor.filterSightings(
-                    null, DataModel.getInstance().startDate,
-                    DataModel.getInstance().endDate, null);
-                Log.e("FILTERED SIGHTINGS", DataModel.getInstance().filteredReports.toString());
-
+                filteredReports = RatSightingAccessor.filterSightings(
+                    null, startDate,
+                    endDate, null); //got filtered reports
                 Context context = (view.getContext());
                 Intent intent = new Intent(view.getContext(), MapsActivity.class);
-                intent.putExtra("filtered", (Serializable) DataModel.getInstance().filteredReports);
+                intent.putExtra("filtered", (Serializable) filteredReports); //pass into maps
                 context.startActivity(intent);
                 finish();
             }
         });
-        //mLoginFormView = findViewById(R.id.login_form);
-        //mProgressView = findViewById(R.id.login_progress);
     }
+
+    /**
+     * clas which allows you to choose your start date
+     */
     public static class startDatePicker extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
         @Override
@@ -86,27 +94,56 @@ public class filterMenuActivity extends AppCompatActivity {
             // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
+
+        /**
+         *
+         * @param year number representation
+         * @param month number
+         * @param day number
+         * @return conversion to date
+         */
         public Date getDate(int year, int month, int day){
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.YEAR, year);
             cal.set(Calendar.MONTH, month);
             cal.set(Calendar.DAY_OF_MONTH, day);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
             return cal.getTime();
 
         }
+
+        /**
+         *
+         * @param view
+         * @param year
+         * @param month
+         * @param day
+         * This method updates the startDate and passes the text to the button
+         */
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            DataModel.getInstance().startDate = this.getDate(year, month, day);
+            filterMenuActivity activity = (filterMenuActivity)this.getActivity();
+            activity.startDate = this.getDate(year, month, day);
             Button button = (Button) this.getActivity().findViewById(R.id.startDateButton);
-            button.setText(DataModel.getInstance().startDate.toString());
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            button.setText(df.format(activity.startDate));
         }
 
     }
+
     public static class endDatePicker extends startDatePicker{
+
+        /**
+         * this method updates the endDate and passes the text to the button
+         */
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            DataModel.getInstance().endDate = this.getDate(year, month, day);
+            filterMenuActivity activity = (filterMenuActivity)this.getActivity();
+            activity.endDate = this.getDate(year, month, day);
             Button button = (Button) this.getActivity().findViewById(R.id.endDateButton);
-            button.setText(DataModel.getInstance().endDate.toString());
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            button.setText(df.format(activity.endDate));
         }
     }
 

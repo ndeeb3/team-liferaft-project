@@ -17,9 +17,7 @@ class DataModel {
     //the list of rat reports from the database
     public List<RatSightingReport> reports;
     public int newKey;
-    public Date startDate = null; // a date which is used by the filter menu
-    public Date endDate = null; // a date which is used by the filter menu
-    public List<RatSightingReport> filteredReports;
+
     static DataModel getInstance() {
         return ourInstance;
     }
@@ -27,7 +25,6 @@ class DataModel {
     private DataModel() {
         userList = new ArrayList<>();
         reports = new LinkedList<>();
-        filteredReports = new ArrayList<>();
         newKey = 0;
     }
 }

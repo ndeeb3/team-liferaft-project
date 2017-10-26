@@ -164,7 +164,7 @@ public class RatSightingAccessor {
     /**
      *
      * @param locationType can Filter results by location Type Enum
-     * @param startDate dateRange start >=
+     * @param startDate dateRange start >
      * @param endDate stateRange end <=
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
@@ -181,10 +181,10 @@ public class RatSightingAccessor {
             if ((locationType != null) && !report.getLocationType().equals(locationType)) {
                 continue;
             }
-            if ((startDate != null) && (report.getDateTime().compareTo(startDate) < 0)) {
+            if ((startDate != null) && (!report.getDateTime().after(startDate))){
                 continue;
             }
-            if ((endDate != null) && (report.getDateTime().compareTo(endDate) > 0)) {
+            if ((endDate != null) && (!report.getDateTime().before(endDate))) {
                 continue;
             }
             if ((borough != null) && (!report.getBorough().equals(borough))) {
@@ -205,13 +205,6 @@ public class RatSightingAccessor {
         return new RatSightingReport[0];
     }-*
 
-    /**
-     * Updates the map with a list of reports
-     * @param reports the reports will get get added to the map
-     */
-    public void updateMap(RatSightingReport[] reports){
-        // Todo
-    }
 
     /**
      * This method inputs a sighting into the database
