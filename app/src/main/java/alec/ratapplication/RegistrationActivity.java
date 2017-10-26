@@ -25,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
+/**
+ * A menu allowing a new user to register
+ * an account
+ */
 public class RegistrationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -103,7 +107,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Validates the information entered
+     * by the user
      */
     private void attemptRegistration() {
 

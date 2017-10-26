@@ -13,6 +13,10 @@ import android.widget.Button;
 
 import java.util.List;
 
+/**
+ * A menu which lets a user login to their account
+ * or create a new account
+ */
 public class Welcome extends AppCompatActivity {
 
 

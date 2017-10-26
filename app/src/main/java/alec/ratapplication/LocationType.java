@@ -3,9 +3,9 @@ package alec.ratapplication;
 import android.util.Log;
 
 /**
+ *
  * Created by Sonia Thakur on 10/2/2017. DO NOT USE
  */
-
 public enum LocationType {
 
     FAMILYDWELLING ("1-2 Family Dwelling"),
@@ -38,7 +38,7 @@ public enum LocationType {
     /**
      *
      * @param locationType the string representation of the location type ex "Public Garden". Converts entry in database to LocationType
-     * @return
+     * @return The LocationType represented by the String
      */
     public static LocationType getLocationType(String locationType) {
         for (LocationType c : values()) {

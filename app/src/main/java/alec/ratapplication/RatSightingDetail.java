@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * Displays the details of a selected rat sighting
+ */
 public class RatSightingDetail extends AppCompatActivity {
 
     @Override

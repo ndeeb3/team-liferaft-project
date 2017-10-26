@@ -3,9 +3,11 @@ package alec.ratapplication;
 import java.io.Serializable;
 
 /**
+ * A registered member of the application
+ * who can enter and view rat sightings
+ *
  * Created by Sonia Thakur on 10/2/2017.
  */
-
 public class User implements Serializable {
 
     private String loginName;
@@ -14,6 +16,7 @@ public class User implements Serializable {
     private String contactInfo;
 
     /**
+     * Creates a new User
      *
      * @param loginName the user's login name
      * @param password the user's password
@@ -31,7 +34,6 @@ public class User implements Serializable {
         return loginName;
     }
     /**
-     *
      * @param loginName the login name of the user
      */
     public void setLoginName(String loginName) {

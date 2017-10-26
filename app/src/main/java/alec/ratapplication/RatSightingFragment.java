@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 
 /**
- *
+ * A fragment used to present the details of a rat sighting
  */
 public class RatSightingFragment extends Fragment {
     /**

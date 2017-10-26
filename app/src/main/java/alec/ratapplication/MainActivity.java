@@ -13,6 +13,10 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+/**
+ * The main menu of the application, which gives users the
+ * choice to view data, input data, or leave the application
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<User> users;

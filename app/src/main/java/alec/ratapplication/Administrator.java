@@ -1,13 +1,17 @@
-/**
- * Created by micha on 10/2/2017.
- */
 package alec.ratapplication;
 
+/**
+ * A type of User who is able to manage
+ * accounts
+ *
+ * Created by micha on 10/2/2017.
+ */
 public class Administrator extends User {
     private String loginName;
     private String fdsgsdf;
 
     /**
+     * Constructs an Administrator
      *
      * @param loginName the users login name
      * @param password the users password

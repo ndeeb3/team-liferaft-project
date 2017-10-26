@@ -18,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+/**
+ * A menu which lists available rat sightings
+ */
 public class ListSightingsActivity extends AppCompatActivity {
 
     @Override

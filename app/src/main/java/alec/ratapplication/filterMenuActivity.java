@@ -1,9 +1,5 @@
 package alec.ratapplication;
 
-/**
- * Created by micha on 10/25/2017.
- */
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -27,6 +23,8 @@ import java.util.List;
 
 /**
  * A login screen that offers login with email/password.
+ *
+ * Created by micha on 10/25/2017.
  */
 public class filterMenuActivity extends AppCompatActivity {
     public Date startDate = null; // a date which is used by the filter menu
@@ -79,7 +77,7 @@ public class filterMenuActivity extends AppCompatActivity {
     }
 
     /**
-     * clas which allows you to choose your start date
+     * Class which allows you to choose your start date
      */
     public static class startDatePicker extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
@@ -96,10 +94,9 @@ public class filterMenuActivity extends AppCompatActivity {
         }
 
         /**
-         *
-         * @param year number representation
-         * @param month number
-         * @param day number
+         * @param year year
+         * @param month month
+         * @param day day
          * @return conversion to date
          */
         public Date getDate(int year, int month, int day){
@@ -115,12 +112,12 @@ public class filterMenuActivity extends AppCompatActivity {
         }
 
         /**
-         *
-         * @param view
-         * @param year
-         * @param month
-         * @param day
          * This method updates the startDate and passes the text to the button
+         *
+         * @param view Used to select startDate
+         * @param year year
+         * @param month month
+         * @param day day
          */
         public void onDateSet(DatePicker view, int year, int month, int day) {
             filterMenuActivity activity = (filterMenuActivity)this.getActivity();
@@ -132,10 +129,18 @@ public class filterMenuActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Class which allows you to select your end date
+     */
     public static class endDatePicker extends startDatePicker{
 
         /**
-         * this method updates the endDate and passes the text to the button
+         * This method updates the endDate and passes the text to the button
+         *
+         * @param view Used to select endDate
+         * @param year year
+         * @param month month
+         * @param day day
          */
         @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {

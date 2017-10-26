@@ -20,6 +20,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+/**
+ * A menu for a user to input a rat sighting report
+ */
 public class input_sighting_activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner LocationTypeSpinner;
@@ -92,6 +95,9 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         BoroughSpinner.setAdapter(BoroughAdapter);
     }
 
+    /**
+     * Validates the data entered by the user
+     */
     private void attemptLogReport() {
         //Reset Errors
         addressText.setError(null);

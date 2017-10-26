@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * Created by micha on 10/2/2017.
  */
-
 class DataModel {
     // try changing this to final
     private static DataModel ourInstance = new DataModel();

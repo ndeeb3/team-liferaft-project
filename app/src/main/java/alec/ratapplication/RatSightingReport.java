@@ -6,9 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * A report submitted by a user indicating when
+ * and where a rat was seen.
+ *
  * Created by Sonia Thakur on 10/2/2017.
  */
-
 public class RatSightingReport implements Serializable {
     private String key;
     private double latitude;
@@ -21,6 +23,7 @@ public class RatSightingReport implements Serializable {
     private  String borough;
 
     /**
+     * Constructs a new report
      *
      * @param key the unique key auto-assigned by the system
      * @param latitude the latitude of the rat sighting

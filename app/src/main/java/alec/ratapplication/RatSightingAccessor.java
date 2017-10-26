@@ -17,9 +17,12 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Accesses the database to retrieve current rat sightings
+ */
 public class RatSightingAccessor {
 
-    public static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();;
+    public static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
     private ChildEventListener dataListener;
     private String TAG = "DEBUG";
     public static List<String> snapshots = new LinkedList<>();
@@ -28,10 +31,12 @@ public class RatSightingAccessor {
     }
 
     /**
+     * Converts a String representation of a date into
+     * a Date object
      *
-     * @return
+     * @param strDateTime A String representing a date
+     * @return The Date represented by the String
      */
-
     public static Date convertStringToDate(String strDateTime) {
         Date dateTime = null;
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
@@ -42,6 +47,14 @@ public class RatSightingAccessor {
         }
         return dateTime;
     }
+
+    /**
+     * Returns a String representation of a Date
+     *
+     * @param dateTime The Date to be converted
+     * @return The Date represented by a String
+     * @throws NullPointerException when entered Date is null
+     */
     public static String convertDateToString(Date dateTime) throws NullPointerException {
         if (dateTime == null) {
             throw new NullPointerException("DATETIME IS A NULL");
@@ -162,6 +175,7 @@ public class RatSightingAccessor {
 
 
     /**
+     * Filters the current sightings by time and location
      *
      * @param locationType can Filter results by location Type Enum
      * @param startDate dateRange start >

@@ -10,6 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Allows the user to leave the main application
+ * and return to the login screen
+ */
 public class Logout extends AppCompatActivity {
 
     @Override

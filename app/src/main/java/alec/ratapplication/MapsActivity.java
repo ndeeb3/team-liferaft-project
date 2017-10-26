@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Shows users the current rat sightings on a map
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, Serializable {
 
     private GoogleMap mMap;
