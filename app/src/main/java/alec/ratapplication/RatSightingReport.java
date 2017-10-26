@@ -1,5 +1,6 @@
 package alec.ratapplication;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Date;
  * Created by Sonia Thakur on 10/2/2017.
  */
 
-public class RatSightingReport {
+public class RatSightingReport implements Serializable {
     private String key;
     private double latitude;
     private double longitude;

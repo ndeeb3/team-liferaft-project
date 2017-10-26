@@ -169,7 +169,7 @@ public class RatSightingAccessor {
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
-    public ArrayList<RatSightingReport> filterSightings(LocationType locationType,
+    public static ArrayList<RatSightingReport> filterSightings(LocationType locationType,
                                                Date startDate,
                                                Date endDate,
                                                Borough borough){

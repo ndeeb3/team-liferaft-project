@@ -35,13 +35,11 @@
                     android:layout_height="wrap_content"
                     android:text="Search From:" />
 
-                <EditText
-                    android:id="@+id/editTextStart"
+                <Button
+                    android:id="@+id/startDateButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:text="Button" />
 
             </LinearLayout>
 
@@ -56,13 +54,11 @@
                     android:layout_height="wrap_content"
                     android:text="Search To" />
 
-                <EditText
-                    android:id="@+id/editTextEnd"
+                <Button
+                    android:id="@+id/endDateButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:text="Button" />
 
             </LinearLayout>
         </LinearLayout>

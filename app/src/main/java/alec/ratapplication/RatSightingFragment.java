@@ -33,7 +33,6 @@ public class RatSightingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //Gets the unique ID and location in data list
         if (getArguments().containsKey(ITEM_ID)) {
             String item_id = getArguments().getString(ITEM_ID);
