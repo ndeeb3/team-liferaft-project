@@ -169,7 +169,6 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(RegistrationActivity.this, "Registration Failed",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-
                         //Logic if the user is successfully registered
                         FirebaseUser user = mAuth.getCurrentUser();
                         DatabaseReference mRef = FirebaseDatabase.getInstance()
@@ -183,7 +182,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             //add admin status and other user specific data if needed
                             if (adminCheckBox.isChecked()) {
-                                //add the user to the users list in the database as well
                                 mRef.child(user.getUid()).child("admin").setValue("true");
                             } else {
                                 mRef.child(user.getUid()).child("admin").setValue("false");

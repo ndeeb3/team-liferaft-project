@@ -71,7 +71,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button graphViewButton = (Button) findViewById(R.id.gotoGraph);
+        graphViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = (view.getContext());
+                Intent intent = new Intent(view.getContext(), GraphActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
         users = new ArrayList<>();
     }
-
 }

@@ -80,6 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng newMarker = new LatLng(latitude, longitude);
                 mMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
                         + report.getAddress()).snippet(report.toString()));
+                //  mMap.moveCamera(CameraUpdateFactory.newLatLng(newMarker));
                 //mMap.addMarker(new MarkerOptions().position(loc).title(r.getName()).snippet(r.getDescription()));
             }
         }

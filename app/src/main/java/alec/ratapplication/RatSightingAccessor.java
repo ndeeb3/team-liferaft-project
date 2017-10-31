@@ -77,7 +77,7 @@ public class RatSightingAccessor {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                    if (dataSnapshot.child("Incident Address").getValue() != null && dataSnapshot.child("Incident Address").getValue().equals("TEST")) {
+                    if (/*dataSnapshot.child("Incident Address").getValue() != null &&*/ dataSnapshot.child("Longitude").getValue().equals("0.0")) {
                         mDatabase.child(dataSnapshot.getKey()).removeValue();
                         return;
                     }

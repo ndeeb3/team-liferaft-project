@@ -35,7 +35,6 @@
             android:id="@+id/LogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="none"
             android:text="Logout"
             tools:layout_editor_absoluteX="127dp"
             tools:layout_editor_absoluteY="279dp" />
@@ -59,6 +58,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="View Map" />
+
+        <Button
+            android:id="@+id/gotoGraph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VIEW GRAPH" />
 
     </LinearLayout>
 

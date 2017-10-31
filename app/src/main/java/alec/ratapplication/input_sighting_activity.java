@@ -194,7 +194,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
     private boolean isTimeValid(String time) {
         //Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-        return time.matches("\\d{2}/\\d{2}/\\d{4}\\s\\d{2}\\d{2}\\s(?:am|AM|pm|PM)");
+        return time.matches("\\d{2} \\/ \\d{2} \\/ \\d{4} \\s \\d{2}:\\d{2} \\s(?:am|AM|pm|PM)");
     }
     private boolean isTimeValid2(String time) {
         try{

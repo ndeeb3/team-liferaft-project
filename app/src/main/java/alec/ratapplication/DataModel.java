@@ -14,7 +14,7 @@ class DataModel {
     //the list of user objects
     public ArrayList<User> userList;
     //the list of rat reports from the database
-    public List<RatSightingReport> reports;
+    public LinkedList<RatSightingReport> reports;
     public int newKey;
 
     static DataModel getInstance() {
