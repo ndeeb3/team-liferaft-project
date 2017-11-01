@@ -25,7 +25,6 @@ import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
 
-
     private BarChart historyChart;
 
     @Override
@@ -76,7 +75,8 @@ public class GraphActivity extends AppCompatActivity {
 
 
         BarData barData = new BarData(dataSet);
-
+        barData.setValueFormatter(new TimeValueFormatter(historyChart));
+        
         XAxis timeAxis = historyChart.getXAxis();
         timeAxis.setValueFormatter(new DateAxisValueFormatter(historyChart));
         historyChart.setData(barData);
@@ -88,6 +88,7 @@ public class GraphActivity extends AppCompatActivity {
         timeAxis.setLabelRotationAngle(45);
         //historyChart.set/
         //historyChart.setDescription(" ");
+
         historyChart.invalidate();
 
     }
