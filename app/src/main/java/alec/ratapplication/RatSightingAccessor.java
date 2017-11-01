@@ -72,7 +72,7 @@ public class RatSightingAccessor {
         Log.d("DEBUG", mDatabase.toString());
         if(DataModel.getInstance().reports.size() == 0) {
             //limit to first limits the number of entries the query will access
-            Query tempquery = mDatabase.child("reports").limitToLast(10);
+            Query tempquery = mDatabase.child("reports").limitToLast(50);
             tempquery.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
