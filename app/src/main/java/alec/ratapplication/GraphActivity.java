@@ -1,5 +1,6 @@
 package alec.ratapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -26,9 +28,19 @@ import java.util.List;
 public class GraphActivity extends AppCompatActivity {
 
     private BarChart historyChart;
-
+    private List<RatSightingReport> sightings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sightings = DataModel.getInstance().reports;
+        if (savedInstanceState == null) { //without instance data it will check extras
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                sightings = (List) extras.getSerializable("filtered");
+            }
+        } else {
+            sightings = (List) savedInstanceState.getSerializable("filtered"); //retrieve list
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -37,12 +49,11 @@ public class GraphActivity extends AppCompatActivity {
         historyChart = (BarChart) findViewById(R.id.hist_chart);
 
         //temporarily gets all reports
-        LinkedList<RatSightingReport> dateFilteredReports = DataModel.getInstance().reports;
         List<BarEntry> historyEntries = new ArrayList<>();
 
         // entry should be (report month / year, number of reports)
 
-        for (RatSightingReport report : dateFilteredReports) {
+        for (RatSightingReport report : sightings) {
             //get number of months since epoch for report
             int months = getMonthsFromEpoch(report.getDateTime());
             Log.d("DEBUG", "MONTHS: " + months);
@@ -62,6 +73,15 @@ public class GraphActivity extends AppCompatActivity {
             }
         }
         Log.d("DEBUG", "hist:" + historyEntries.toString());
+        Button filterButton = (Button) findViewById(R.id.filterButtonGraph);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GraphActivity.this, filterMenuActivity.class);
+                intent.putExtra("activity", "Graphs"); //pass Graphs so it will go back on submit
+                startActivity(intent);
+            }
+        });
         /*historyEntries.add(new BarEntry(1,7));
         historyEntries.add(new BarEntry(2,5));
         //historyEntries.add(new BarEntry(3,2));

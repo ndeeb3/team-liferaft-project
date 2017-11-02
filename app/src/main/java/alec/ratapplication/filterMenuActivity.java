@@ -31,8 +31,18 @@ public class filterMenuActivity extends AppCompatActivity {
     public Date endDate = null; // a date which is used by the filter menu
     public List<RatSightingReport> filteredReports = new ArrayList<>();
 
+    private String PreviousActivity = null; //this is where i will be going back to
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState == null) { //without instance data it will check extras
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                PreviousActivity = (String) extras.getSerializable("activity");
+            }
+        } else {
+            PreviousActivity = (String) savedInstanceState.getSerializable("activity"); //retrieve list
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_filter_menu);
 
@@ -68,7 +78,20 @@ public class filterMenuActivity extends AppCompatActivity {
                     null, startDate,
                     endDate, null); //got filtered reports
                 Context context = (view.getContext());
-                Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                Intent intent;
+                if (PreviousActivity == null) {
+                    Log.e("ERROR", "YOU DIDNT CALL PUT EXTRA in the last activity. HOW COULD YOU DO THIS");
+                    intent = new Intent(view.getContext(), MapsActivity.class);
+
+                } else if (PreviousActivity.equals("Maps")) {
+                    Log.d("INFO", "everything is proceding as I had forseen");
+                    intent = new Intent(view.getContext(), MapsActivity.class);
+                } else if (PreviousActivity.equals("Graphs")) {
+                    intent = new Intent(view.getContext(), GraphActivity.class);
+                } else {
+                    Log.e("ERROR", "THAT ACTIVIT DOES NOT EXIST. HOW COULD YOU DO THIS");
+                    intent = new Intent(view.getContext(), MapsActivity.class);
+                }
                 intent.putExtra("filtered", (Serializable) filteredReports); //pass into maps
                 context.startActivity(intent);
                 finish();
