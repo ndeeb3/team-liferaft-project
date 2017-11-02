@@ -87,6 +87,7 @@ public class filterMenuActivity extends AppCompatActivity {
                     Log.d("INFO", "everything is proceding as I had forseen");
                     intent = new Intent(view.getContext(), MapsActivity.class);
                 } else if (PreviousActivity.equals("Graphs")) {
+                    Log.d("INFO", "Your overconfidence is your weakness...");
                     intent = new Intent(view.getContext(), GraphActivity.class);
                 } else {
                     Log.e("ERROR", "THAT ACTIVIT DOES NOT EXIST. HOW COULD YOU DO THIS");

@@ -40,7 +40,7 @@ public class GraphActivity extends AppCompatActivity {
         } else {
             sightings = (List) savedInstanceState.getSerializable("filtered"); //retrieve list
         }
-
+        Log.d("DEBUG", "length of sitings" + sightings.size());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
