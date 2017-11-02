@@ -82,13 +82,6 @@ public class GraphActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*historyEntries.add(new BarEntry(1,7));
-        historyEntries.add(new BarEntry(2,5));
-        //historyEntries.add(new BarEntry(3,2));
-        //historyEntries.add(new BarEntry(4,9));
-        historyEntries.add(new BarEntry(5,5));
-        historyEntries.add(new BarEntry(6,5));
-        historyEntries.add(new BarEntry(7,1));*/
 
         BarDataSet dataSet = new BarDataSet(historyEntries, "History Of Reports");
         dataSet.setColor(Color.RED);
@@ -101,13 +94,10 @@ public class GraphActivity extends AppCompatActivity {
         timeAxis.setValueFormatter(new DateAxisValueFormatter(historyChart));
         historyChart.setData(barData);
 
-        //timeAxis.setGranularity();
-        timeAxis.setLabelCount(12);
-        timeAxis.setAxisMinimum(0f);
-        timeAxis.setAxisMaximum(11f);
-        timeAxis.setLabelRotationAngle(45);
-        //historyChart.set/
-        //historyChart.setDescription(" ");
+//        timeAxis.setLabelCount(12);
+//        timeAxis.setAxisMinimum(0f);
+//        timeAxis.setAxisMaximum(11f);
+//        timeAxis.setLabelRotationAngle(45);
 
         historyChart.invalidate();
 
@@ -122,11 +112,7 @@ public class GraphActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(time);
-        //long months = cal.getTimeInMillis() / (60L*60L*1000L*24L*30L);
-        //Log.d("DEBUG", "MONTHS???: " + months);
-        //return (int) ((time - 0) / (1000*60*60*24*12));
-        //Log.d("DEBUG", "Year: " + cal.get(Calendar.YEAR));
-        return cal.get(Calendar.MONTH); //+ 12 * (cal.get(Calendar.YEAR) - 1970);
+        return cal.get(Calendar.MONTH);
     }
 
 }
