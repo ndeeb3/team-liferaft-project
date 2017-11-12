@@ -1,15 +1,10 @@
 package alec.ratapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 /**
  * Displays the details of a selected rat sighting
@@ -20,7 +15,7 @@ public class RatSightingDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat_sighting_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         /*ActionBar actionBar = getSupportActionBar();
@@ -37,7 +32,7 @@ public class RatSightingDetail extends AppCompatActivity {
             arguments.putInt("loc", getIntent().getIntExtra("loc", 0));
             RatSightingFragment fragment = new RatSightingFragment();
             fragment.setArguments(arguments);
-            Log.d("DEBUG", "Begining fragment transaction");
+            Log.d("DEBUG", "Beginning fragment transaction");
             getSupportFragmentManager().beginTransaction().add(R.id.rat_sighting_container, fragment).commit();
         }
     }
@@ -45,10 +40,7 @@ public class RatSightingDetail extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == android.R.id.home || super.onOptionsItemSelected(item);
     }
 
 

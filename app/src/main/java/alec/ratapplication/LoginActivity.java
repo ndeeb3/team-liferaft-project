@@ -1,32 +1,20 @@
 package alec.ratapplication;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.MediaCodec;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,8 +27,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -99,8 +85,8 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         // Set up the login form ui.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView = findViewById(R.id.email);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -112,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button cancelLogin = (Button) findViewById(R.id.cancelLoginButton);
+        Button cancelLogin = findViewById(R.id.cancelLoginButton);
         cancelLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,11 +147,11 @@ public class LoginActivity extends AppCompatActivity {
         }
         return false;
     }
-
+/*
     /**
      * Callback received when a permissions request has been completed.
      */
-   /* @Override
+/*    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == REQUEST_READ_CONTACTS) {
@@ -270,7 +256,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         return password.length() > 4;
     }
-
+/*
     /**
      * Shows the progress UI and hides the login form.
      */

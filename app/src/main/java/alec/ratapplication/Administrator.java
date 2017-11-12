@@ -4,7 +4,7 @@ package alec.ratapplication;
  * A type of User who is able to manage
  * accounts
  *
- * Created by micha on 10/2/2017.
+ * Created by michael on 10/2/2017.
  */
 public class Administrator extends User {
     private String loginName;
@@ -25,7 +25,7 @@ public class Administrator extends User {
 
     /**
      *
-     * @param user a user to be registerd
+     * @param user a user to be registered
      */
     public void registerAccount(User user){
         // Todo

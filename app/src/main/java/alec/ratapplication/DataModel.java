@@ -1,12 +1,13 @@
 package alec.ratapplication;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
- * Created by micha on 10/2/2017.
+ * A class holding the important data in the
+ * application
+ *
+ * Created by michael on 10/2/2017.
  */
 class DataModel {
     // try changing this to final

@@ -28,11 +28,11 @@ public class ListSightingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_sightings);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //Sets up the recycler view, adding the adapter and layout manager
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sightings_View);
+        RecyclerView recyclerView = findViewById(R.id.sightings_View);
         Log.d("DEBUG", "setting up recycler view");
         recyclerView.setAdapter(new RatRecyclerViewAdapter(DataModel.getInstance().reports));
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
@@ -78,7 +78,7 @@ public class ListSightingsActivity extends AppCompatActivity {
             }
 
             //Opens a new detailed sighting view
-            //also passes in the display fragment and posistion of the clicked item
+            //also passes in the display fragment and position of the clicked item
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -95,7 +95,7 @@ public class ListSightingsActivity extends AppCompatActivity {
 
         /**
          * inner class for the RatRecyclerViewAdapter
-         * actually sets up the textviews for the list
+         * actually sets up the text views for the list
          */
         public class RatViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
@@ -106,8 +106,8 @@ public class ListSightingsActivity extends AppCompatActivity {
             public RatViewHolder(View view) {
                 super(view);
                 mView = view;
-                addressView = (TextView) view.findViewById(R.id.address);
-                timeView = (TextView) view.findViewById(R.id.time);
+                addressView = view.findViewById(R.id.address);
+                timeView = view.findViewById(R.id.time);
             }
 
             @Override

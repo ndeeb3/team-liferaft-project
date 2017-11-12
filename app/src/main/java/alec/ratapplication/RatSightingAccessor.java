@@ -1,5 +1,4 @@
 package alec.ratapplication;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
@@ -10,7 +9,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +63,7 @@ public class RatSightingAccessor {
     }
     /**
      * Method that loads the sightings into the data model from the database
-     * as firebase does this asyncronusly, will not stop the progress of the program
+     * as firebase does this asynchronously, will not stop the progress of the program
      */
     public static void loadSightings() {
         //DatabaseReference reports = mDatabase.child("reports");
@@ -87,12 +85,12 @@ public class RatSightingAccessor {
 
 
                     double lat = 0;
-                    if (!((String) dataSnapshot.child("Latitude").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("Latitude").getValue()).equals("")) {
                         lat = Double.valueOf((String) dataSnapshot.child("Latitude").getValue());
                     }
 
                     double lon = 0;
-                    if (!((String) dataSnapshot.child("Longitude").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("Longitude").getValue()).equals("")) {
                         lon = Double.valueOf((String) dataSnapshot.child("Longitude").getValue());
                     }
 
@@ -103,29 +101,29 @@ public class RatSightingAccessor {
                     }
 
                     String loc = "NO LOCATION GIVEN";
-                    if (!((String) dataSnapshot.child("Location Type").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("Location Type").getValue()).equals("")) {
                         loc = (String) dataSnapshot.child("Location Type").getValue();
                     }
 
                     int zip = 0;
-                    if (!((String) dataSnapshot.child("Incident Zip").getValue()).equals("")
-                            && !((String) dataSnapshot.child("Incident Zip").getValue()).equals("N/A")) {
+                    if (!(dataSnapshot.child("Incident Zip").getValue()).equals("")
+                            && !(dataSnapshot.child("Incident Zip").getValue()).equals("N/A")) {
                         zip = Integer.valueOf((String) dataSnapshot.child("Incident Zip").getValue());
                     }
 
                     String address = "NO ADDRESS GIVEN";
-                    if (!((String) dataSnapshot.child("Incident Address").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("Incident Address").getValue()).equals("")) {
                         address = (String) dataSnapshot.child("Incident Address").getValue();
                     }
                     //Log.d("DEBUG", "Address:" + dataSnapshot.child("Incident Address").getValue());
 
                     String city = "NO CITY GIVEN";
-                    if (!((String) dataSnapshot.child("City").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("City").getValue()).equals("")) {
                         city = (String) dataSnapshot.child("City").getValue();
                     }
 
                     String borough = "NO BOROUGH GIVEN";
-                    if (!((String) dataSnapshot.child("Borough").getValue()).equals("")) {
+                    if (!(dataSnapshot.child("Borough").getValue()).equals("")) {
                         borough = (String) dataSnapshot.child("Borough").getValue();
                     }
 
@@ -209,7 +207,7 @@ public class RatSightingAccessor {
         }
         return reports;
     }
-
+/*
     /**
      *
      * @return a list of rat report sightings. Alec will replace the code we put here

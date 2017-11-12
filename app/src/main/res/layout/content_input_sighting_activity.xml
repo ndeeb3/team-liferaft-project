@@ -136,7 +136,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,14 +149,12 @@
                     android:id="@+id/textViewLat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Latitude:" />
+                    android:text="Latitude:"/>
 
                 <EditText
                     android:id="@+id/inputLatitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="" />
@@ -172,7 +171,6 @@
                     android:id="@+id/textViewLong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Longitude" />
 
                 <EditText

@@ -44,13 +44,13 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        adminCheckBox = (CheckBox) findViewById(R.id.adminChkBox);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        mUsernameView = (EditText) findViewById(R.id.username);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        adminCheckBox = findViewById(R.id.adminChkBox);
+        mEmailView = findViewById(R.id.email);
+        mUsernameView = findViewById(R.id.username);
+        mPasswordView = findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,12 +65,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     // User is signed out
                     Log.d("DEBUG", "onAuthStateChanged:signed_out");
                 }
-                // Do anyting with user when it logs in or leaves
+                // Do anything with user when it logs in or leaves
             }
         };
 
         //register new user and log them in
-        Button registrationButton = (Button) findViewById(R.id.register_button);
+        Button registrationButton = findViewById(R.id.register_button);
         registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +81,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         //Cancel the registration screen and return to the welcome screen
-        Button cancelRegistration = (Button) findViewById(R.id.cancelRegButton);
+        Button cancelRegistration = findViewById(R.id.cancelRegButton);
         cancelRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

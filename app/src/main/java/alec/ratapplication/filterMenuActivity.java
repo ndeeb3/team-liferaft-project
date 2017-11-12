@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * A login screen that offers login with email/password.
  *
- * Created by micha on 10/25/2017.
+ * Created by michael on 10/25/2017.
  */
 public class filterMenuActivity extends AppCompatActivity {
     public Date startDate = null; // a date which is used by the filter menu
@@ -47,7 +47,7 @@ public class filterMenuActivity extends AppCompatActivity {
         setContentView(R.layout.content_filter_menu);
 
         //start Date button
-        Button button =  (Button) findViewById(R.id.startDateButton);
+        Button button = findViewById(R.id.startDateButton);
         button.setText("No date");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class filterMenuActivity extends AppCompatActivity {
         });
 
         //end Date Button
-        Button button2 =  (Button) findViewById(R.id.endDateButton);
+        Button button2 =  findViewById(R.id.endDateButton);
         button2.setText("No date");
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class filterMenuActivity extends AppCompatActivity {
         });
         //filter button.
         //if you just hit filter with no options it will show all the originals
-        Button button3 = (Button) findViewById(R.id.buttonFilter);
+        Button button3 = findViewById(R.id.buttonFilter);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,17 +80,17 @@ public class filterMenuActivity extends AppCompatActivity {
                 Context context = (view.getContext());
                 Intent intent;
                 if (PreviousActivity == null) {
-                    Log.e("ERROR", "YOU DIDNT CALL PUT EXTRA in the last activity. HOW COULD YOU DO THIS");
+                    Log.e("ERROR", "YOU DIDN'T CALL PUT EXTRA in the last activity. HOW COULD YOU DO THIS");
                     intent = new Intent(view.getContext(), MapsActivity.class);
 
                 } else if (PreviousActivity.equals("Maps")) {
-                    Log.d("INFO", "everything is proceding as I had forseen");
+                    Log.d("INFO", "everything is proceeding as I had foreseen");
                     intent = new Intent(view.getContext(), MapsActivity.class);
                 } else if (PreviousActivity.equals("Graphs")) {
                     Log.d("INFO", "Your overconfidence is your weakness...");
                     intent = new Intent(view.getContext(), GraphActivity.class);
                 } else {
-                    Log.e("ERROR", "THAT ACTIVIT DOES NOT EXIST. HOW COULD YOU DO THIS");
+                    Log.e("ERROR", "THAT ACTIVITY DOES NOT EXIST. HOW COULD YOU DO THIS");
                     intent = new Intent(view.getContext(), MapsActivity.class);
                 }
                 intent.putExtra("filtered", (Serializable) filteredReports); //pass into maps
@@ -146,7 +146,7 @@ public class filterMenuActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             filterMenuActivity activity = (filterMenuActivity)this.getActivity();
             activity.startDate = this.getDate(year, month, day);
-            Button button = (Button) this.getActivity().findViewById(R.id.startDateButton);
+            Button button = this.getActivity().findViewById(R.id.startDateButton);
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             button.setText(df.format(activity.startDate));
         }
@@ -170,7 +170,7 @@ public class filterMenuActivity extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             filterMenuActivity activity = (filterMenuActivity)this.getActivity();
             activity.endDate = this.getDate(year, month, day);
-            Button button = (Button) this.getActivity().findViewById(R.id.endDateButton);
+            Button button = this.getActivity().findViewById(R.id.endDateButton);
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
             button.setText(df.format(activity.endDate));
         }

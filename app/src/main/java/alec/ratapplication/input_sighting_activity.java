@@ -1,5 +1,4 @@
 package alec.ratapplication;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,9 +15,7 @@ import android.widget.Button;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 /**
  * A menu for a user to input a rat sighting report
@@ -41,10 +38,10 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         newReport = new RatSightingReport();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_sighting_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,14 +50,14 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
             }
         });
 
-        BoroughSpinner = (Spinner) findViewById(R.id.BoroughSpinner);
-        LocationTypeSpinner = (Spinner) findViewById(R.id.LocationTypeSpinner);
-        addressText = (EditText) findViewById(R.id.addressInput);
-        zipcodeText = (EditText) findViewById(R.id.zipcodeInput);
-        cityText = (EditText) findViewById(R.id.cityInput);
-        timeText = (EditText) findViewById(R.id.timeInput);
-        inputLatitude = (EditText) findViewById(R.id.inputLatitude);
-        inputLongitude = (EditText) findViewById(R.id.inputLongitude);
+        BoroughSpinner = findViewById(R.id.BoroughSpinner);
+        LocationTypeSpinner = findViewById(R.id.LocationTypeSpinner);
+        addressText = findViewById(R.id.addressInput);
+        zipcodeText = findViewById(R.id.zipcodeInput);
+        cityText = findViewById(R.id.cityInput);
+        timeText = findViewById(R.id.timeInput);
+        inputLatitude = findViewById(R.id.inputLatitude);
+        inputLongitude = findViewById(R.id.inputLongitude);
 
         Date time = new Date();
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
@@ -72,7 +69,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         LocationTypeSpinner.setAdapter(adapter);
 
-        Button submitButton = (Button) findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +77,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
             }
         });
 
-        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -194,7 +191,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
     private boolean isTimeValid(String time) {
         //Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-        return time.matches("\\d{2} \\/ \\d{2} \\/ \\d{4} \\s \\d{2}:\\d{2} \\s(?:am|AM|pm|PM)");
+        return time.matches("\\d{2} / \\d{2} / \\d{4} \\s \\d{2}:\\d{2} \\s(?:am|AM|pm|PM)");
     }
     private boolean isTimeValid2(String time) {
         try{

@@ -2,10 +2,7 @@ package alec.ratapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -20,17 +17,17 @@ import java.util.List;
 public class Welcome extends AppCompatActivity {
 
 
-    private List<User> temperaryUsersList;
+    private List<User> temporaryUsersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        Button login = (Button) findViewById(R.id.loginButton);
-        Button register = (Button) findViewById(R.id.registerButton);
+        Button login = findViewById(R.id.loginButton);
+        Button register = findViewById(R.id.registerButton);
 
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

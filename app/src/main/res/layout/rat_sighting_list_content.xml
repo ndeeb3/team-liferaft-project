@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left"
+        android:gravity="start"
         android:textAlignment="viewStart" />
 
     <TextView
@@ -16,6 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="right"
+        android:gravity="end"
         android:textAlignment="viewEnd" />
 </LinearLayout>

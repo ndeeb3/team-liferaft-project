@@ -3,9 +3,6 @@ package alec.ratapplication;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,7 +19,6 @@ import com.github.mikephil.charting.data.Entry;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
@@ -43,10 +39,10 @@ public class GraphActivity extends AppCompatActivity {
         Log.d("DEBUG", "length of sitings" + sightings.size());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        historyChart = (BarChart) findViewById(R.id.hist_chart);
+        historyChart = findViewById(R.id.hist_chart);
 
         //temporarily gets all reports
         List<BarEntry> historyEntries = new ArrayList<>();
@@ -73,7 +69,7 @@ public class GraphActivity extends AppCompatActivity {
             }
         }
         Log.d("DEBUG", "hist:" + historyEntries.toString());
-        Button filterButton = (Button) findViewById(R.id.filterButtonGraph);
+        Button filterButton = findViewById(R.id.filterButtonGraph);
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,9 +100,9 @@ public class GraphActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param time
-     * @return
+     * Calculates the number of months from the epoch date to the date given
+     * @param time A date
+     * @return The number of months since epoch date
      */
     private int getMonthsFromEpoch(Date time) {
 

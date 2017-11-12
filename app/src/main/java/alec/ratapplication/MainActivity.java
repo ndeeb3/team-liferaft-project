@@ -3,10 +3,7 @@ package alec.ratapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         //begin loading the rat sightings from firebase
         RatSightingAccessor.loadSightings();
 
-        Button button =  (Button) findViewById(R.id.LogoutButton);
+        Button button =  findViewById(R.id.LogoutButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Launches the sightings view
-        Button button2 = (Button) findViewById(R.id.SightingsView);
+        Button button2 = findViewById(R.id.SightingsView);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
-        Button button3 = (Button) findViewById(R.id.goToInput);
+        Button button3 = findViewById(R.id.goToInput);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
-        Button button4 = (Button) findViewById(R.id.goToMap);
+        Button button4 = findViewById(R.id.goToMap);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button graphViewButton = (Button) findViewById(R.id.gotoGraph);
+        Button graphViewButton = findViewById(R.id.gotoGraph);
         graphViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
