@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -147,7 +148,7 @@ public class filterMenuActivity extends AppCompatActivity {
             filterMenuActivity activity = (filterMenuActivity)this.getActivity();
             activity.startDate = this.getDate(year, month, day);
             Button button = this.getActivity().findViewById(R.id.startDateButton);
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
             button.setText(df.format(activity.startDate));
         }
 
@@ -171,7 +172,7 @@ public class filterMenuActivity extends AppCompatActivity {
             filterMenuActivity activity = (filterMenuActivity)this.getActivity();
             activity.endDate = this.getDate(year, month, day);
             Button button = this.getActivity().findViewById(R.id.endDateButton);
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+            DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
             button.setText(df.format(activity.endDate));
         }
     }

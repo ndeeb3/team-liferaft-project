@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * A report submitted by a user indicating when
@@ -122,7 +123,7 @@ public class RatSightingReport implements Serializable {
     }
 
     public String toString() {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         return "Key: " + key + "\nTime: " + df.format(dateTime) + "\nAddress: " + address;
     }
 

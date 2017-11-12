@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Accesses the database to retrieve current rat sightings
@@ -37,7 +38,7 @@ public class RatSightingAccessor {
      */
     public static Date convertStringToDate(String strDateTime) {
         Date dateTime = null;
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             dateTime = df.parse(strDateTime);
         } catch (Exception e) {
@@ -57,7 +58,7 @@ public class RatSightingAccessor {
         if (dateTime == null) {
             throw new NullPointerException("DATETIME IS A NULL");
         }
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
 
         return df.format(dateTime);
     }
