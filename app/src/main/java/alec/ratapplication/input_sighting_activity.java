@@ -128,7 +128,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
             zipcodeText.setError(getString(R.string.error_field_required));
             focusView = zipcodeText;
             cancel = true;
-        } else if (!isZipValid(zipcode)) {
+        } else if (!InputCleanser.isZipValid(zipcode)) {
             zipcodeText.setError(getString(R.string.error_invalid_zipcode));
             focusView = zipcodeText;
             cancel = true;
@@ -146,7 +146,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
             timeText.setError(getString(R.string.error_field_required));
             focusView = timeText;
             cancel = true;
-        } else if (!isTimeValid2(time)) {
+        } else if (!InputCleanser.isTimeValid2(time)) {
             timeText.setError(getString(R.string.error_invalid_time));
             focusView = timeText;
             cancel = true;
@@ -173,36 +173,6 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         }
     }
 
-    /**
-     * Private zipcode validation method that checks the zipcode string against a zipcode-styled regex
-     * @param zipcode the zipcode string that is being validated
-     * @return true if the string is a valid zipcode, false otherwise
-     */
-    private boolean isZipValid(String zipcode) {
-        //Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        return zipcode.matches("^[0-9]{5}(?:-[0-9]{4})?$");
-    }
-
-    /**
-     * Private time validation method that checks the time string against a time-styled regex
-     * @param time the time string that is being validated
-     * @return true if the string is a valid time, false otherwise
-     */
-    @Deprecated
-    private boolean isTimeValid(String time) {
-        //Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
-        return time.matches("\\d{2} / \\d{2} / \\d{4} \\s \\d{2}:\\d{2} \\s(?:am|AM|pm|PM)");
-    }
-    private boolean isTimeValid2(String time) {
-        try{
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
-            df.parse(time);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
 
     @Override
