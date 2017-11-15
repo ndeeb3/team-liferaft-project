@@ -71,8 +71,8 @@ public class RatSightingAccessor {
         Log.d("DEBUG", mDatabase.toString());
         if(DataModel.getInstance().reports.size() == 0) {
             //limit to first limits the number of entries the query will access
-            Query tempquery = mDatabase.child("reports").limitToLast(50);
-            tempquery.addChildEventListener(new ChildEventListener() {
+            Query dataQuery = mDatabase.child("reports").limitToLast(150);
+            dataQuery.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -235,7 +235,6 @@ public class RatSightingAccessor {
         newRef.child("City").setValue(sighting.getCity());
         newRef.child("Borough").setValue(sighting.getBorough());
         newRef.child("Created Date").setValue(RatSightingAccessor.convertDateToString(sighting.getDateTime()));
-        Log.e("Error", "LOOOOOOOOOOK" + sighting.getDateTime().toString());
     }
 
     /**

@@ -50,6 +50,7 @@ public enum LocationType {
         Log.d("location type ERROR", locationType);
         throw new IllegalArgumentException(locationType);
     }
+
     public String getValue() { return value; }
 
 }

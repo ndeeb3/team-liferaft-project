@@ -51,7 +51,7 @@ public class GetLocationTypeTest {
 
     /**
      * Tests that the method will throw an
-     * IllegealArgumentException when an unexpected
+     * IllegalArgumentException when an unexpected
      * value is passed in
      */
     @Test (expected = IllegalArgumentException.class)
@@ -62,7 +62,7 @@ public class GetLocationTypeTest {
 
     /**
      * Tests that the method will throw an
-     * IllegealArgumentException when a value
+     * IllegalArgumentException when a value
      * similar to a real value is passed in
      */
     @Test (expected = IllegalArgumentException.class)

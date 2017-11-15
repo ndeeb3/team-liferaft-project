@@ -8,7 +8,6 @@ package alec.ratapplication;
  */
 public class Administrator extends User {
     private String loginName;
-    private String fdsgsdf;
 
     /**
      * Constructs an Administrator

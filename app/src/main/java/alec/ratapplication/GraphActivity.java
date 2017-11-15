@@ -49,6 +49,7 @@ public class GraphActivity extends AppCompatActivity {
 
         // entry should be (report month / year, number of reports)
 
+
         for (RatSightingReport report : sightings) {
             //get number of months since epoch for report
             int months = getMonthsFromEpoch(report.getDateTime());
@@ -85,15 +86,15 @@ public class GraphActivity extends AppCompatActivity {
 
         BarData barData = new BarData(dataSet);
         barData.setValueFormatter(new TimeValueFormatter(historyChart));
-        
+
         XAxis timeAxis = historyChart.getXAxis();
         timeAxis.setValueFormatter(new DateAxisValueFormatter(historyChart));
         historyChart.setData(barData);
 
-//        timeAxis.setLabelCount(12);
-//        timeAxis.setAxisMinimum(0f);
-//        timeAxis.setAxisMaximum(11f);
-//        timeAxis.setLabelRotationAngle(45);
+        timeAxis.setLabelCount(12);
+        timeAxis.setAxisMinimum(0f);
+        timeAxis.setAxisMaximum(12f);
+        timeAxis.setLabelRotationAngle(45);
 
         historyChart.invalidate();
 

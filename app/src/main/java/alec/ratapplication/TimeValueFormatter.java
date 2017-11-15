@@ -28,6 +28,6 @@ public class TimeValueFormatter implements IValueFormatter {
         String monthName = mMonths[month % mMonths.length];
         String yearName = String.valueOf(year);
 
-        return entry.getY() + ":" + monthName + " " + yearName;
+        return (int)entry.getY() + ":" + monthName + " " + yearName;
     }
 }
