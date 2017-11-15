@@ -8,7 +8,7 @@ import java.io.Serializable;
  *
  * Created by Sonia Thakur on 10/2/2017.
  */
-public class User implements Serializable {
+class User implements Serializable {
 
     private String loginName;
     private String password;
@@ -22,7 +22,7 @@ public class User implements Serializable {
      * @param password the user's password
      * @param contactInfo the user's email address
      */
-    public User(String loginName, String password, String contactInfo) {
+    User(String loginName, String password, String contactInfo) {
         this.loginName = loginName;
         this.password = password;
         this.contactInfo = contactInfo;

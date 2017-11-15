@@ -66,23 +66,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
+        //GoogleMap mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng nyc = new LatLng(40.7128, -74.0060);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nyc, 10));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nyc, 10));
         for (RatSightingReport report : sightings) {
             double latitude = report.getLatitude();
             double longitude = report.getLongitude();
             if (latitude != 0 && longitude != 0 && report.getDateTime() != null) {
                 LatLng newMarker = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
+                googleMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
                         + report.getAddress()).snippet(report.toString()));
                 //  mMap.moveCamera(CameraUpdateFactory.newLatLng(newMarker));
                 //mMap.addMarker(new MarkerOptions().position(loc).title(r.getName()).snippet(r.getDescription()));
             }
         }
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
 
     private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {

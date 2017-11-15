@@ -5,10 +5,10 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
-public class TimeValueFormatter implements IValueFormatter {
+class TimeValueFormatter implements IValueFormatter {
 
 
-    protected String[] mMonths = new String[]{
+    private String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 

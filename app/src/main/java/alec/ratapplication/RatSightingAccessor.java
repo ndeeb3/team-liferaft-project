@@ -19,13 +19,13 @@ import java.util.Locale;
 /**
  * Accesses the database to retrieve current rat sightings
  */
-public class RatSightingAccessor {
+class RatSightingAccessor {
 
-    public static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
+    private static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
     private ChildEventListener dataListener;
     private String TAG = "DEBUG";
     public static List<String> snapshots = new LinkedList<>();
-    public RatSightingAccessor() {
+    private RatSightingAccessor() {
         Query recentPostsQuery = mDatabase;
     }
 
@@ -36,7 +36,7 @@ public class RatSightingAccessor {
      * @param strDateTime A String representing a date
      * @return The Date represented by the String
      */
-    public static Date convertStringToDate(String strDateTime) {
+    private static Date convertStringToDate(String strDateTime) {
         Date dateTime = null;
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
@@ -54,7 +54,7 @@ public class RatSightingAccessor {
      * @return The Date represented by a String
      * @throws NullPointerException when entered Date is null
      */
-    public static String convertDateToString(Date dateTime) throws NullPointerException {
+    private static String convertDateToString(Date dateTime) throws NullPointerException {
         if (dateTime == null) {
             throw new NullPointerException("DATETIME IS A NULL");
         }

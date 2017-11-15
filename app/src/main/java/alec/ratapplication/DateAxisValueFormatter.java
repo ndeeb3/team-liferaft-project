@@ -4,15 +4,15 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-public class DateAxisValueFormatter implements IAxisValueFormatter {
+class DateAxisValueFormatter implements IAxisValueFormatter {
 
-    protected String[] mMonths = new String[]{
+    private String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
     private BarLineChartBase<?> chart;
 
-    public DateAxisValueFormatter(BarLineChartBase<?> chart) {
+    DateAxisValueFormatter(BarLineChartBase<?> chart) {
         this.chart = chart;
     }
 

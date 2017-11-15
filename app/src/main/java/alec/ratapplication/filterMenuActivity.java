@@ -29,9 +29,9 @@ import java.util.Locale;
  * Created by michael on 10/25/2017.
  */
 public class filterMenuActivity extends AppCompatActivity {
-    public Date startDate = null; // a date which is used by the filter menu
-    public Date endDate = null; // a date which is used by the filter menu
-    public List<RatSightingReport> filteredReports = new ArrayList<>();
+    private Date startDate = null; // a date which is used by the filter menu
+    private Date endDate = null; // a date which is used by the filter menu
+    private List<RatSightingReport> filteredReports = new ArrayList<>();
 
     private String PreviousActivity = null; //this is where i will be going back to
 

@@ -6,7 +6,7 @@ package alec.ratapplication;
  *
  * Created by michael on 10/2/2017.
  */
-public class Administrator extends User {
+class Administrator extends User {
     private String loginName;
 
     /**
