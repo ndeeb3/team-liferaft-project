@@ -176,8 +176,7 @@
                 <EditText
                     android:id="@+id/inputLongitude"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:text="" />
