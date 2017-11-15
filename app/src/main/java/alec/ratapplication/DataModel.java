@@ -13,7 +13,7 @@ class DataModel {
     // try changing this to final
     private final static DataModel ourInstance = new DataModel();
     //the list of user objects
-    public final ArrayList<User> userList;
+    private final ArrayList<User> userList;
     //the list of rat reports from the database
     public final LinkedList<RatSightingReport> reports;
     public int newKey;

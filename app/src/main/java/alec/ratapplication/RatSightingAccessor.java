@@ -12,21 +12,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 
 /**
  * Accesses the database to retrieve current rat sightings
  */
-class RatSightingAccessor {
+ class RatSightingAccessor {
 
     private final static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
-    private ChildEventListener dataListener;
-    private String TAG = "DEBUG";
-    public static List<String> snapshots = new LinkedList<>();
-    private RatSightingAccessor() {
-        Query recentPostsQuery = mDatabase;
+    //private ChildEventListener dataListener;
+    RatSightingAccessor() {
+        //Query recentPostsQuery = mDatabase;
     }
 
     /**
@@ -237,23 +233,23 @@ class RatSightingAccessor {
         newRef.child("Created Date").setValue(RatSightingAccessor.convertDateToString(sighting.getDateTime()));
     }
 
-    /**
+    /*/**
      * Generates a new user entry and passes it to the database
      * @param user user to be added to the database
      */
-    public void createAccount(User user) {
+    /*public void createAccount(User user) {
         // Todo this code is temporary
         Log.d("DEBUG", "Inside accessor" + user.getContactInfo());
         DataModel.getInstance().userList.add(user);
-    }
-    /**
+    }*/
+
+    /*/**
      * Gets the list of users from the data model
      *
      * @return an array of the Users
      */
-    public ArrayList<User> getUsers(){
-        // Todo this code is temporary
+    /*public ArrayList<User> getUsers(){
         return DataModel.getInstance().userList;
        // mDatabase.
-    }
+    }*/
 }

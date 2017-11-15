@@ -51,6 +51,6 @@ public enum LocationType {
         throw new IllegalArgumentException(locationType);
     }
 
-    public String getValue() { return value; }
+    //public String getValue() { return value; }
 
 }

@@ -4,10 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-/**
- * Created by micha on 11/13/2017.
- */
-
 class InputCleanser {
     /**
      * Private zipcode validation method that checks the zipcode string against a zipcode-styled regex

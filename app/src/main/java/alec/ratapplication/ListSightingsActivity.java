@@ -13,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.List;
 
 /**
@@ -46,7 +43,7 @@ public class ListSightingsActivity extends AppCompatActivity {
             extends RecyclerView.Adapter<RatRecyclerViewAdapter.RatViewHolder> {
 
         private final List<RatSightingReport> sightings;
-        private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        //private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
         public RatRecyclerViewAdapter(List<RatSightingReport> reports) {
             sightings = reports;

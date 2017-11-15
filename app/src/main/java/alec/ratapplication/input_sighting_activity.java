@@ -110,8 +110,8 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         String zipcode = zipcodeText.getText().toString();
         String city = cityText.getText().toString();
         String time = timeText.getText().toString();
-        String longitude = inputLatitude.getText().toString();
-        String latitude = inputLongitude.getText().toString();
+        //String longitude = inputLatitude.getText().toString();
+        //String latitude = inputLongitude.getText().toString();
 
         boolean cancel = false;
         View focusView = null;

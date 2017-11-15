@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                //Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 Log.d("DEBUG", "CHECKING FORMAT");
                 attemptRegistration();
             }
