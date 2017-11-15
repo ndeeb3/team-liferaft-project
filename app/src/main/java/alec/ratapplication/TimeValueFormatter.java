@@ -20,6 +20,7 @@ public class TimeValueFormatter implements IValueFormatter {
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+        chart.getYChartMax();
         int month = (int) entry.getX();
 
         int year = 17;//determineYear(days);

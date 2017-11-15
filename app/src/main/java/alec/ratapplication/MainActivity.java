@@ -16,7 +16,6 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<User> users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +76,5 @@ public class MainActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
-
-        users = new ArrayList<>();
     }
 }

@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, Serializable {
 
-    private GoogleMap mMap;
+    //private GoogleMap mMap;
     private List<RatSightingReport> sightings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng nyc = new LatLng(40.7128, -74.0060);

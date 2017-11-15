@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form ui.
         mEmailView = findViewById(R.id.email);
         mPasswordView = findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        /*mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
 
         Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {

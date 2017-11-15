@@ -22,12 +22,10 @@ import java.util.Date;
 import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
-
-    private BarChart historyChart;
-    private List<RatSightingReport> sightings;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sightings = DataModel.getInstance().reports;
+        List<RatSightingReport> sightings = DataModel.getInstance().reports;
         if (savedInstanceState == null) { //without instance data it will check extras
             Bundle extras = getIntent().getExtras();
             if(extras != null) {
@@ -42,13 +40,12 @@ public class GraphActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        historyChart = findViewById(R.id.hist_chart);
+        BarChart historyChart = findViewById(R.id.hist_chart);
 
         //temporarily gets all reports
         List<BarEntry> historyEntries = new ArrayList<>();
 
         // entry should be (report month / year, number of reports)
-
 
         for (RatSightingReport report : sightings) {
             //get number of months since epoch for report
