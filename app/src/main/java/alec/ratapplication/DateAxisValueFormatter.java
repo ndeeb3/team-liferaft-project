@@ -6,11 +6,11 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 class DateAxisValueFormatter implements IAxisValueFormatter {
 
-    private String[] mMonths = new String[]{
+    private final String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
-    private BarLineChartBase<?> chart;
+    private final BarLineChartBase<?> chart;
 
     DateAxisValueFormatter(BarLineChartBase<?> chart) {
         this.chart = chart;

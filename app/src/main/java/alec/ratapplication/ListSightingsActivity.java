@@ -45,7 +45,7 @@ public class ListSightingsActivity extends AppCompatActivity {
     public class RatRecyclerViewAdapter
             extends RecyclerView.Adapter<RatRecyclerViewAdapter.RatViewHolder> {
 
-        private List<RatSightingReport> sightings;
+        private final List<RatSightingReport> sightings;
         private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
         public RatRecyclerViewAdapter(List<RatSightingReport> reports) {

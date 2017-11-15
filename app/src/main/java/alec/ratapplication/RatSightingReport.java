@@ -13,7 +13,7 @@ import java.util.Locale;
  * Created by Sonia Thakur on 10/2/2017.
  */
 public class RatSightingReport implements Serializable {
-    private String key;
+    private final String key;
     private double latitude;
     private double longitude;
     private Date dateTime;

@@ -8,11 +8,11 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 class TimeValueFormatter implements IValueFormatter {
 
 
-    private String[] mMonths = new String[]{
+    private final String[] mMonths = new String[]{
             "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
-    private BarLineChartBase<?> chart;
+    private final BarLineChartBase<?> chart;
 
     public TimeValueFormatter(BarLineChartBase<?> chart) {
         this.chart = chart;

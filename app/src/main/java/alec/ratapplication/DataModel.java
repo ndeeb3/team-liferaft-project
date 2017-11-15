@@ -11,11 +11,11 @@ import java.util.LinkedList;
  */
 class DataModel {
     // try changing this to final
-    private static DataModel ourInstance = new DataModel();
+    private final static DataModel ourInstance = new DataModel();
     //the list of user objects
-    public ArrayList<User> userList;
+    public final ArrayList<User> userList;
     //the list of rat reports from the database
-    public LinkedList<RatSightingReport> reports;
+    public final LinkedList<RatSightingReport> reports;
     public int newKey;
 
     static DataModel getInstance() {

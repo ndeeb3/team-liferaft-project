@@ -21,7 +21,7 @@ import java.util.Locale;
  */
 class RatSightingAccessor {
 
-    private static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
+    private final static DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
     private ChildEventListener dataListener;
     private String TAG = "DEBUG";
     public static List<String> snapshots = new LinkedList<>();
