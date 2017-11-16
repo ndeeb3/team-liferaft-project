@@ -178,31 +178,16 @@ import java.util.Locale;
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
-    public static ArrayList<RatSightingReport> filterSightings(LocationType locationType,
+    public static ArrayList<RatSightingReport> filterSightings(String locationType,
                                                Date startDate,
                                                Date endDate,
-                                               Borough borough){
+                                               String borough){
 
-       // Query tempQuery = mDatabase;//.limitToFirst(100);
-        //tempQuery.addChildEventListener(dataListener);
-        ArrayList<RatSightingReport> reports = new ArrayList<>();
-        for (RatSightingReport report: DataModel.getInstance().reports) {
-            if ((locationType != null) && !report.getLocationType().equals(locationType)) {
-                continue;
-            }
-            if ((startDate != null) && (!report.getDateTime().after(startDate))){
-                continue;
-            }
-            if ((endDate != null) && (!report.getDateTime().before(endDate))) {
-                continue;
-            }
-            if ((borough != null) && (!report.getBorough().equals(borough))) {
-                continue;
-            }
-            reports.add(report);
-
-        }
-        return reports;
+        return InputCleanser.filterSightings(DataModel.getInstance().reports,
+                                             locationType,
+                                             startDate,
+                                             endDate,
+                                             borough);
     }
 /*
     /**
