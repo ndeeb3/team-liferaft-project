@@ -244,7 +244,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param password the password string that is being checked for length
      * @return true if the password is long enough, false otherwise
      */
-    private boolean isPasswordValid(String password) {
+     static boolean isPasswordValid(String password) {
         return password.length() > 4;
     }
 /*
