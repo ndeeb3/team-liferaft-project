@@ -9,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,15 +31,20 @@ import java.util.Locale;
      * a Date object
      *
      * @param strDateTime A String representing a date
-     * @return The Date represented by the String
+     * @return The Date represented by the String, null if there is a parsing error
      */
-    private static Date convertStringToDate(String strDateTime) {
+    static Date convertStringToDate(String strDateTime) {
+        if (strDateTime == null) {
+            throw new NullPointerException("strDateTime is null");
+        }
         Date dateTime = null;
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             dateTime = df.parse(strDateTime);
-        } catch (Exception e) {
+        } catch (ParseException e) {
             Log.e("Warn", "The dateTime is in the wrong format in the database: ", e);
+            return null;
+
         }
         return dateTime;
     }
@@ -52,7 +58,7 @@ import java.util.Locale;
      */
     private static String convertDateToString(Date dateTime) throws NullPointerException {
         if (dateTime == null) {
-            throw new NullPointerException("DATETIME IS A NULL");
+            throw new NullPointerException("dateTime is null");
         }
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
 
@@ -94,7 +100,7 @@ import java.util.Locale;
                     Date dateTime = null;
                     if (!(dataSnapshot.child("Created Date").getValue()).toString().equals("")) {
                         String strDateTime = dataSnapshot.child("Created Date").getValue().toString();
-                        dateTime = RatSightingAccessor.convertStringToDate(strDateTime);
+                        dateTime = InputCleanser.convertStringToDate(strDateTime);
                     }
 
                     String loc = "NO LOCATION GIVEN";
@@ -215,7 +221,7 @@ import java.util.Locale;
         newRef.child("Incident Zip").setValue(Integer.toString(sighting.getZipcode()));
         newRef.child("City").setValue(sighting.getCity());
         newRef.child("Borough").setValue(sighting.getBorough());
-        newRef.child("Created Date").setValue(RatSightingAccessor.convertDateToString(sighting.getDateTime()));
+        newRef.child("Created Date").setValue(InputCleanser.convertDateToString(sighting.getDateTime()));
     }
 
     /*/**

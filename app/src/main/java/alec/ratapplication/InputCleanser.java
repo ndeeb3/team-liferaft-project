@@ -1,6 +1,9 @@
 package alec.ratapplication;
 
+import android.util.Log;
+
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +21,11 @@ class InputCleanser {
         return zipcode.matches("^[0-9]{5}(?:-[0-9]{4})?$");
     }
 
+    /**
+     *
+     * @param time
+     * @return
+     */
     static boolean isTimeValid2(String time) {
         try{
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
@@ -63,4 +71,44 @@ class InputCleanser {
         }
         return reports;
     }
+
+    /**
+     * Converts a String representation of a date into
+     * a Date object
+     *
+     * @param strDateTime A String representing a date
+     * @return The Date represented by the String, null if there is a parsing error
+     */
+    static Date convertStringToDate(String strDateTime) {
+        if (strDateTime == null) {
+            throw new NullPointerException("strDateTime is null");
+        }
+        Date dateTime = null;
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
+        try {
+            dateTime = df.parse(strDateTime);
+        } catch (ParseException e) {
+            Log.e("DEBUG", "The dateTime is in the wrong format in the database: ", e);
+            throw new IllegalArgumentException("strDateTime Threw a parseException");
+
+        }
+        return dateTime;
+    }
+
+    /**
+     * Returns a String representation of a Date
+     *
+     * @param dateTime The Date to be converted
+     * @return The Date represented by a String
+     * @throws NullPointerException when entered Date is null
+     */
+    static String convertDateToString(Date dateTime) throws NullPointerException {
+        if (dateTime == null) {
+            throw new NullPointerException("dateTime is null");
+        }
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
+
+        return df.format(dateTime);
+    }
+
 }
