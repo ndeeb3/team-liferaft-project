@@ -202,7 +202,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param email the email string that is being validated
      * @return true if the string is a valid email, false otherwise
      */
-    private boolean isEmailValid(String email) {
+    static boolean isEmailValid(String email) {
         Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
         return p.matcher(email).find();
     }
