@@ -35,6 +35,8 @@ class InputCleanser {
             return false;
         }
     }
+
+
     /**
      * Filters the current sightings by time and location
      *

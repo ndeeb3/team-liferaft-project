@@ -234,8 +234,18 @@ public class LoginActivity extends AppCompatActivity {
      * @return true if the string is a valid email, false otherwise
      */
     static boolean isEmailValid(String email) {
-        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        return p.matcher(email).find();
+        //Pattern namePiece = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        if(email == null) {
+            throw new NullPointerException();
+        }
+        if (email.contains("@")) {
+            Pattern namePiece = Pattern.compile("^[A-Z0-9._%+-]+", Pattern.CASE_INSENSITIVE);
+            if(namePiece.matcher(email).find()) {
+                Pattern typePiece = Pattern.compile("[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+                return typePiece.matcher(email).find();
+            }
+        }
+        return false;
     }
 
     /**
@@ -244,8 +254,13 @@ public class LoginActivity extends AppCompatActivity {
      * @return true if the password is long enough, false otherwise
      */
      static boolean isPasswordValid(String password) {
-        return password.length() > 4;
+         if (password == null)
+         {
+             throw new NullPointerException("Password input cannot be null");
+         }
+         else return password.length() > 4;
     }
+
 /*
     /**
      * Shows the progress UI and hides the login form.

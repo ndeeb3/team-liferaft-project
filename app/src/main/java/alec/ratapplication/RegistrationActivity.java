@@ -203,17 +203,30 @@ public class RegistrationActivity extends AppCompatActivity {
      * @return true if the string is a valid email, false otherwise
      */
     static boolean isEmailValid(String email) {
-        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        return p.matcher(email).find();
+        //Pattern namePiece = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        if(email == null) {
+            throw new NullPointerException();
+        }
+        if (email.contains("@")) {
+            Pattern namePiece = Pattern.compile("^[A-Z0-9._%+-]+", Pattern.CASE_INSENSITIVE);
+            if(namePiece.matcher(email).find()) {
+                Pattern typePiece = Pattern.compile("[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+                return typePiece.matcher(email).find();
+            }
+        }
+        return false;
     }
-
     /**
      * Private password validation method that checks if the password is long enough
      * @param password the password string that is being checked for length
      * @return true if the password is long enough, false otherwise
      */
     private boolean isPasswordValid(String password) {
-        return password.length() > 4;
+        if (password == null)
+        {
+            throw new NullPointerException("Password input cannot be null");
+        }
+        else return password.length() > 4;
     }
 
     /*public User registerUser(User u) {

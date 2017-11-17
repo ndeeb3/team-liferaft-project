@@ -22,9 +22,6 @@ import static org.junit.Assert.assertTrue;
 
 public class ConvertStringToDateTest {
 
-    private ArrayList<String> correctStrings;
-    private ArrayList<Date> dates;
-
     /**
      * Tests when a null is passed in, throws a nullpointerexception
      */
