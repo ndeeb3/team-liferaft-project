@@ -8,12 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Accesses the database to retrieve current rat sightings
@@ -26,14 +23,14 @@ import java.util.Locale;
         //Query recentPostsQuery = mDatabase;
     }
 
-    /**
+    /*/**
      * Converts a String representation of a date into
      * a Date object
      *
      * @param strDateTime A String representing a date
      * @return The Date represented by the String, null if there is a parsing error
      */
-    static Date convertStringToDate(String strDateTime) {
+    /*static Date convertStringToDate(String strDateTime) {
         if (strDateTime == null) {
             throw new NullPointerException("strDateTime is null");
         }
@@ -47,23 +44,23 @@ import java.util.Locale;
 
         }
         return dateTime;
-    }
+    }*/
 
-    /**
+    /*/**
      * Returns a String representation of a Date
      *
      * @param dateTime The Date to be converted
      * @return The Date represented by a String
      * @throws NullPointerException when entered Date is null
      */
-    private static String convertDateToString(Date dateTime) throws NullPointerException {
+    /*private static String convertDateToString(Date dateTime) throws NullPointerException {
         if (dateTime == null) {
             throw new NullPointerException("dateTime is null");
         }
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
 
         return df.format(dateTime);
-    }
+    }*/
     /**
      * Method that loads the sightings into the data model from the database
      * as firebase does this asynchronously, will not stop the progress of the program
@@ -184,7 +181,7 @@ import java.util.Locale;
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
-    public static ArrayList<RatSightingReport> filterSightings(String locationType,
+    static ArrayList<RatSightingReport> filterSightings(String locationType,
                                                Date startDate,
                                                Date endDate,
                                                String borough){

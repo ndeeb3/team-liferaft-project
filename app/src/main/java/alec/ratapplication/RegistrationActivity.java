@@ -38,7 +38,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mUsernameView;
     private EditText mPasswordView;
     private CheckBox adminCheckBox;
-    private RatSightingAccessor ratSightingAccessor = new RatSightingAccessor();
+    //private RatSightingAccessor ratSightingAccessor = new RatSightingAccessor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

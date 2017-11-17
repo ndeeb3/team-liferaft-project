@@ -22,9 +22,9 @@ class InputCleanser {
     }
 
     /**
-     *
-     * @param time
-     * @return
+     * function that checks that the inputed time string is correct
+     * @param time the formatted time string to check
+     * @return if the string is correctly formatted
      */
     static boolean isTimeValid2(String time) {
         try{
@@ -44,7 +44,7 @@ class InputCleanser {
      * @param borough  can Filter results by
      * @return list of rat Sightings report that match filter
      */
-    public static ArrayList<RatSightingReport> filterSightings(List<RatSightingReport> parentList,
+    static ArrayList<RatSightingReport> filterSightings(List<RatSightingReport> parentList,
                                                                String locationType,
                                                                Date startDate,
                                                                Date endDate,
@@ -83,7 +83,7 @@ class InputCleanser {
         if (strDateTime == null) {
             throw new NullPointerException("strDateTime is null");
         }
-        Date dateTime = null;
+        Date dateTime;
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             dateTime = df.parse(strDateTime);

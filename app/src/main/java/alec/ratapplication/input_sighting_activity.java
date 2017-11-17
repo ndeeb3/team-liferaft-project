@@ -35,6 +35,7 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
     private RatSightingReport newReport;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         newReport = new RatSightingReport();
         super.onCreate(savedInstanceState);

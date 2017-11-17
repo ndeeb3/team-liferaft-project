@@ -24,6 +24,7 @@ import java.util.List;
 public class GraphActivity extends AppCompatActivity {
     
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         List<RatSightingReport> sightings = DataModel.getInstance().reports;
         if (savedInstanceState == null) { //without instance data it will check extras
@@ -34,7 +35,7 @@ public class GraphActivity extends AppCompatActivity {
         } else {
             sightings = (List) savedInstanceState.getSerializable("filtered"); //retrieve list
         }
-        Log.d("DEBUG", "length of sitings" + sightings.size());
+        //Log.d("DEBUG", "length of sitings" + sightings.size());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -47,23 +48,25 @@ public class GraphActivity extends AppCompatActivity {
 
         // entry should be (report month / year, number of reports)
 
-        for (RatSightingReport report : sightings) {
-            //get number of months since epoch for report
-            int months = getMonthsFromEpoch(report.getDateTime());
-            Log.d("DEBUG", "MONTHS: " + months);
-            //if that entry does exist, increment the y number
-            boolean inEntries = false;
-            for(Entry entry : historyEntries){
-                if(entry.getX() == months) {
-                    float newAmt = entry.getY() + 1;
-                    entry.setY(newAmt);
-                    inEntries = !inEntries;
+        if(sightings != null) {
+            for (RatSightingReport report : sightings) {
+                //get number of months since epoch for report
+                int months = getMonthsFromEpoch(report.getDateTime());
+                Log.d("DEBUG", "MONTHS: " + months);
+                //if that entry does exist, increment the y number
+                boolean inEntries = false;
+                for (Entry entry : historyEntries) {
+                    if (entry.getX() == months) {
+                        float newAmt = entry.getY() + 1;
+                        entry.setY(newAmt);
+                        inEntries = !inEntries;
+                    }
                 }
-            }
 
-            if(!inEntries) {
-                historyEntries.add(new BarEntry(months, 1));
-                Log.d("DEBUG", "Added new entry:" + months);
+                if (!inEntries) {
+                    historyEntries.add(new BarEntry(months, 1));
+                    Log.d("DEBUG", "Added new entry:" + months);
+                }
             }
         }
         Log.d("DEBUG", "hist:" + historyEntries.toString());

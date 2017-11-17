@@ -1,6 +1,5 @@
 package alec.ratapplication;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -13,7 +12,7 @@ class DataModel {
     // try changing this to final
     private final static DataModel ourInstance = new DataModel();
     //the list of user objects
-    private final ArrayList<User> userList;
+    //private final ArrayList<User> userList;
     //the list of rat reports from the database
     public final LinkedList<RatSightingReport> reports;
     public int newKey;
@@ -23,7 +22,7 @@ class DataModel {
     }
 
     private DataModel() {
-        userList = new ArrayList<>();
+      //  userList = new ArrayList<>();
         reports = new LinkedList<>();
         newKey = 0;
     }

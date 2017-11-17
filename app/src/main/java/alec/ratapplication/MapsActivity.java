@@ -1,5 +1,6 @@
 package alec.ratapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //private GoogleMap mMap;
     private List<RatSightingReport> sightings;
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         sightings = DataModel.getInstance().reports;
         if (savedInstanceState == null) { //without instance data it will check extras
@@ -88,7 +90,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
-
+        @SuppressLint("InflateParams")
         CustomInfoWindowAdapter(){
             myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
         }

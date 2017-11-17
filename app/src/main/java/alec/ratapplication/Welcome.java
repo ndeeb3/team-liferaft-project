@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.List;
 
 /**
  * A menu which lets a user login to their account
@@ -16,8 +15,6 @@ import java.util.List;
  */
 public class Welcome extends AppCompatActivity {
 
-
-    private List<User> temporaryUsersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +30,7 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("DEBUG", "Launching Login Activity");
                 Intent intent = new Intent(Welcome.this, LoginActivity.class);
-                Bundle bundle = new Bundle();
+                //Bundle bundle = new Bundle();
                 startActivity(intent);
             }
         });
