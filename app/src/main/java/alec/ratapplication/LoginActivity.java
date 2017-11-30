@@ -205,12 +205,13 @@ public class LoginActivity extends AppCompatActivity {
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful()) {
                                 Log.w("DEBUG", "signInWithEmail:failed", task.getException());
-                                Toast.makeText(LoginActivity.this, "Login Failed",
+                                Toast.makeText(LoginActivity.this, "Login Failed. Could Not Find Account",
                                         Toast.LENGTH_SHORT).show();
+                            }else {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
                         }
                     });
 
