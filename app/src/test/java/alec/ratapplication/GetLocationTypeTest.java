@@ -12,6 +12,7 @@ import static junit.framework.Assert.assertTrue;
  * Created by Andrew Sheffield on 11/13/2017.
  */
 public class GetLocationTypeTest {
+
     /**
      * Tests that getLocationType responds
      * appropriately to a null value

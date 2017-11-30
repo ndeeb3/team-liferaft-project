@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 /**
  * The main menu of the application, which gives users the
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
                 Context context = (view.getContext());
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
                 context.startActivity(intent);
