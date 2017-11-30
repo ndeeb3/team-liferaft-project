@@ -43,7 +43,7 @@
             android:id="@+id/SightingsView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SightingsView"
+            android:text="List Sightings"
             tools:layout_editor_absoluteX="61dp"
             tools:layout_editor_absoluteY="386dp" />
 
