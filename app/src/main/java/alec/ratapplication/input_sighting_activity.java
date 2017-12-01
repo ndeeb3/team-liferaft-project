@@ -61,6 +61,10 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         inputLatitude = findViewById(R.id.inputLatitude);
         inputLongitude = findViewById(R.id.inputLongitude);
 
+        inputLatitude.setText(Double.toString(DataModel.getInstance().location.latitude));
+        inputLongitude.setText(Double.toString(DataModel.getInstance().location.longitude));
+
+
         Date time = new Date();
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US);
         timeText.setText(df.format(time));

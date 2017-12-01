@@ -1,9 +1,19 @@
 package alec.ratapplication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +34,7 @@ import java.util.List;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, Serializable {
 
-    //private GoogleMap mMap;
+    private GoogleMap mMap;
     private List<RatSightingReport> sightings;
     @Override
     @SuppressWarnings("unchecked")
@@ -57,6 +67,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    private LatLng myLatLng;
+    private void setLatLng(double latitude, double longitude) {
+        myLatLng = new LatLng(latitude,longitude);
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -68,11 +83,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //GoogleMap mMap = googleMap;
+        mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng nyc = new LatLng(40.7128, -74.0060);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nyc, 10));
+        //LatLng nyc = new LatLng(40.7128, -74.0060);
+        //getLocation();
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataModel.getInstance().location, 10));
         for (RatSightingReport report : sightings) {
             double latitude = report.getLatitude();
             double longitude = report.getLongitude();
