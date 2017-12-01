@@ -61,8 +61,8 @@ public class input_sighting_activity extends AppCompatActivity implements Adapte
         inputLatitude = findViewById(R.id.inputLatitude);
         inputLongitude = findViewById(R.id.inputLongitude);
 
-        inputLatitude.setText(Double.toString(DataModel.getInstance().location.latitude));
-        inputLongitude.setText(Double.toString(DataModel.getInstance().location.longitude));
+        inputLatitude.setText(Double.toString(DataModel.getInstance().act_location.latitude));
+        inputLongitude.setText(Double.toString(DataModel.getInstance().act_location.longitude));
 
 
         Date time = new Date();

@@ -250,9 +250,10 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         }
 
-         Log.d("DEBUG", "Password reset");
-         FirebaseAuth.getInstance().sendPasswordResetEmail(email);
-         return true;
+        Log.d("DEBUG", "Password reset");
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email);
+        Toast.makeText(getApplicationContext(), "Reset Email Sent", Toast.LENGTH_SHORT).show();
+        return true;
     }
 
 

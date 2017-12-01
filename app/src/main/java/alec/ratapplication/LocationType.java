@@ -37,7 +37,7 @@ public enum LocationType {
 
     /**
      *
-     * @param locationType the string representation of the location type ex "Public Garden". Converts entry in database to LocationType
+     * @param locationType the string representation of the sel_location type ex "Public Garden". Converts entry in database to LocationType
      * @return The LocationType represented by the String
      */
     public static LocationType getLocationType(String locationType) {
@@ -47,7 +47,7 @@ public enum LocationType {
             }
         }
         // either throw the IAE or return null, your choice.
-        Log.d("location type ERROR", locationType);
+        Log.d("sel_location type ERROR", locationType);
         throw new IllegalArgumentException(locationType);
     }
 

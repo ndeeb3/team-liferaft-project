@@ -18,7 +18,8 @@ class DataModel {
     //the list of rat reports from the database
     public final LinkedList<RatSightingReport> reports;
     public int newKey;
-    public LatLng location;
+    public LatLng sel_location;
+    public LatLng act_location;
 
     static DataModel getInstance() {
         return ourInstance;
@@ -28,6 +29,8 @@ class DataModel {
       //  userList = new ArrayList<>();
         reports = new LinkedList<>();
         newKey = 0;
-        location = new LatLng(0,0);
+        sel_location = new LatLng(0,0);
+        act_location = new LatLng(0,0);
+
     }
 }

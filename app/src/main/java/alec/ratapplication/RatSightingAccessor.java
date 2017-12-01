@@ -173,9 +173,9 @@ import java.util.Date;
 
 
     /**
-     * Filters the current sightings by time and location
+     * Filters the current sightings by time and sel_location
      *
-     * @param locationType can Filter results by location Type Enum
+     * @param locationType can Filter results by sel_location Type Enum
      * @param startDate dateRange start >
      * @param endDate stateRange end <=
      * @param borough  can Filter results by

@@ -30,7 +30,7 @@ public class RatSightingReport implements Serializable {
      * @param latitude the latitude of the rat sighting
      * @param longitude the longitude of the rat sighting
      * @param dateTime the date and time of the rat sighting
-     * @param locationType the location from the LocationType enum
+     * @param locationType the sel_location from the LocationType enum
      * @param zipcode the zipcode of the rat sighting
      * @param address the address of the rat sighting
      * @param city the city of the rat sighting

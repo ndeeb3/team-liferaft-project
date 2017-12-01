@@ -1,6 +1,5 @@
 package alec.ratapplication;
 
-import android.*;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -78,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Context context = (view.getContext());
+                DataModel.getInstance().sel_location = DataModel.getInstance().act_location;
                 Intent intent = new Intent(view.getContext(), input_sighting_activity.class);
                 context.startActivity(intent);
             }
@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         LocationManager service = (LocationManager)getSystemService(LOCATION_SERVICE);
-        // Define a listener that responds to location updates
+        // Define a listener that responds to sel_location updates
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
-                DataModel.getInstance().location = new LatLng(location.getLatitude(),location.getLongitude());
-                Log.d("DEBUG", "LOCATION:" + DataModel.getInstance().location);
+                // Called when a new sel_location is found by the network sel_location provider.
+                DataModel.getInstance().act_location = new LatLng(location.getLatitude(),location.getLongitude());
+                Log.d("DEBUG", "LOCATION:" + DataModel.getInstance().sel_location);
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -155,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 final Status status = result.getStatus();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
-                        Log.i("DEBUG", "All location settings are satisfied.");
+                        Log.i("DEBUG", "All sel_location settings are satisfied.");
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                        Log.i("DEBUG", "Location settings are not satisfied. Show the user a dialog to upgrade location settings ");
+                        Log.i("DEBUG", "Location settings are not satisfied. Show the user a dialog to upgrade sel_location settings ");
 
                         try {
                             // Show the dialog by calling startResolutionForResult(), and check the result

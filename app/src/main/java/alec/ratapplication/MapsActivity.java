@@ -1,19 +1,9 @@
 package alec.ratapplication;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
-import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -64,6 +54,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
+
+
     }
 
 
@@ -89,19 +81,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //LatLng nyc = new LatLng(40.7128, -74.0060);
         //getLocation();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataModel.getInstance().location, 10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DataModel.getInstance().act_location, 10));
         for (RatSightingReport report : sightings) {
             double latitude = report.getLatitude();
             double longitude = report.getLongitude();
             if (latitude != 0 && longitude != 0 && report.getDateTime() != null) {
                 LatLng newMarker = new LatLng(latitude, longitude);
-                googleMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
+                mMap.addMarker(new MarkerOptions().position(newMarker).title("Report at "
                         + report.getAddress()).snippet(report.toString()));
                 //mMap.moveCamera(CameraUpdateFactory.newLatLng(newMarker));
                 //mMap.addMarker(new MarkerOptions().position(loc).title(r.getName()).snippet(r.getDescription()));
             }
         }
-        googleMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                Intent intent = new Intent(MapsActivity.this, input_sighting_activity.class);
+                DataModel.getInstance().sel_location = point;
+                startActivity(intent);
+                //Toast.makeText(getApplicationContext(), point.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
